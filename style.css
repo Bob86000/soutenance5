@@ -1,0 +1,185 @@
+html
+{
+    font-size: 100%;
+
+}
+
+html, body
+{  
+    margin: 0;
+    padding: 0;
+}
+.main_wrapper
+{
+    display:flex;
+    width: 90%;
+    flex-direction: column;
+    margin: auto;
+}
+h1
+{
+    font-size:4rem;
+}
+h2
+{
+    font-size: 3rem;
+}
+h3
+{
+    font-size: 2rem;
+}
+p
+{
+    font-size: 1.3rem;
+}
+
+.fas
+{
+    font-size:8rem;
+}
+header ,.headerctn-header
+{
+    display: flex;
+    width: 100%;
+}
+header
+{
+    border: solid black 2px;
+    background-color: rgb(235, 154, 125);
+}
+.headerctn-logo
+{
+    display: flex;
+    width: 50%;
+}
+.title
+{
+    width: 30%;
+}
+.logo 
+{
+    width:20%;
+}
+header nav
+{
+    display:flex;
+    width:50%;
+}
+header nav ul
+{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    justify-content: space-around;
+}
+header nav ul li 
+{
+    display: flex;
+}
+main 
+{
+    display: flex;
+    width:100%;
+    flex-direction: column;
+}
+article
+{
+    display: flex;
+    width:100%;
+    justify-content: space-around;
+    margin-top: 6rem;
+}
+.articlectn-productctn
+{
+    display: flex;
+    width:40%;
+    flex-direction: column;
+    background-color: brown;
+    border: solid black 2px;
+}
+.articlectn-buyctn
+{
+    display: flex;
+    width:40%;
+    flex-direction: column;
+    background-color: burlywood;
+    border: solid black 2px;
+}
+h2, h3 
+{
+    text-align: center;
+}
+.articlectn-header1, .articlectn-header2
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width:100%;
+
+}
+.articlectn-header2 
+{
+    flex-direction: column;
+}
+.articlectn-main1, .articlectn-main2
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}
+.articlectn-main1
+{
+    flex-direction: column;
+}
+.articlectn-main1 img
+{
+    display: flex;
+    width: 80%;
+}
+.articlectn-main2
+{
+    flex-direction: column;
+}
+.articlectn-footer1, .articlectn-footer2 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}
+.articlectn-footer2 
+{
+    margin-top: 3rem;
+}
+.otherproduct
+{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    
+}
+.otherproduct-selection
+{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.otherproduct-selection div
+{
+    display: flex;
+    width: 20%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+aside div img
+{
+    width:80%;
+}
