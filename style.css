@@ -76,6 +76,11 @@ header nav ul li
 {
     display: flex;
 }
+section
+{
+    display: flex;
+    width: 100%;
+}
 main 
 {
     display: flex;
@@ -89,7 +94,7 @@ article
     justify-content: space-around;
     margin-top: 6rem;
 }
-.articlectn-productctn
+.productpagectn
 {
     display: flex;
     width:40%;
@@ -97,7 +102,7 @@ article
     background-color: brown;
     border: solid black 2px;
 }
-.articlectn-buyctn
+.productpage .articlectn-buyctn
 {
     display: flex;
     width:40%;
@@ -109,7 +114,7 @@ h2, h3
 {
     text-align: center;
 }
-.articlectn-header1, .articlectn-header2
+.productpage .articlectn-header1,.productpage .articlectn-header2
 {
     display: flex;
     justify-content: center;
@@ -118,42 +123,42 @@ h2, h3
     width:100%;
 
 }
-.articlectn-header2 
+.productpage .articlectn-header2 
 {
     flex-direction: column;
 }
-.articlectn-main1, .articlectn-main2
+.productpage .articlectn-main1,.productpage .articlectn-main2
 {
     display: flex;
     justify-content: center;
     align-items: center;
     width:100%;
 }
-.articlectn-main1
+.productpage .articlectn-main1
 {
     flex-direction: column;
 }
-.articlectn-main1 img
+.productpage .articlectn-main1 img
 {
     display: flex;
     width: 80%;
 }
-.articlectn-main2
+.productpage .articlectn-main2
 {
     flex-direction: column;
 }
-.articlectn-footer1, .articlectn-footer2 
+.productpage .articlectn-footer1,.productpage .articlectn-footer2 
 {
     display: flex;
     justify-content: center;
     align-items: center;
     width:100%;
 }
-.articlectn-footer2 
+.productpage .articlectn-footer2 
 {
     margin-top: 3rem;
 }
-.otherproduct
+.productpage .otherproduct
 {
     display: flex;
     width: 100%;
@@ -163,14 +168,14 @@ h2, h3
     margin-top: 5rem;
     
 }
-.otherproduct-selection
+.productpage .otherproduct-selection
 {
     width:100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.otherproduct-selection div
+.productpage .otherproduct-selection div
 {
     display: flex;
     width: 20%;
@@ -182,4 +187,45 @@ h2, h3
 aside div img
 {
     width:80%;
+}
+.mainpage 
+{
+    display:flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+}
+.mainpagectn
+{
+    display:flex;
+    width:100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 5rem;
+}
+.mainpage .sectionctn 
+{
+ display:flex;
+ width: 40%;
+ border: solid black 4px;
+ margin-top: 3rem;
+}
+.mainpage .imgctn
+{
+    display: flex;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 50%;
+}
+.mainpage .textctn
+{
+    width:50%;
+
+} 
+.mainpage .sectionctn img
+{
+    width: 100%;
+    border: solid black 4px;
 }
