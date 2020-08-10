@@ -1,18 +1,40 @@
 
+let insa = fetch("http://localhost:3000/api/furniture")
+.then( responsed => {
+return responsed.json()
+} )
+.then( blop => {
+console.log(blop) ; 
+console.log(blop) ; 
 
-var request = new XMLHttpRequest();
+blop.forEach(elements => {
+ document.getElementById("sectionid").innerHTML += "<a href='produit.html'><div class='imgctn'><img  src="+ elements.imageUrl +" /> </div> <h2 class='textctn'><h2>"+ elements.name +"</h2> <p> "+ elements.description +"</p></div></a>"; 
 
-fetch(request)
-.then(
-request.onreadystatechange = function() {
-    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        var response = JSON.parse(this.responseText);
-        console.log(response.description);
-    }
-}
-);
-request.open("GET(/)", "http://localhost:3000/api/furniture");
-request.send();
+ var valueHref = document.querySelectorAll('.mainpagectn a');
+
+for (var i = 0, c = valueHref.length ; i < c ; i++) {
+    valueHref[i].addEventListener('click', function () {
+        alert(elements);
+        return elements
+})};
+
+
+ });
+
+});
+
+
+
+
+/*CSSConditionRule
+
+coder.com
+
+afficher, cliquer, ajouter au panier 
+
+
+
+par defautl il fait get.
 
 const innerdescription = document.getElementsByClassName('textctn');
 this.innerHTML.response.description;
@@ -21,6 +43,6 @@ this.innerHTML.response.description;
 this.innerHTML.String(response.description);
 
 const events = document.getElementsByClassName('textctn');
-events.addEventListener('click', function() {     
-    events.innerHTML = "C'est cliqué !";   
-})   
+events.addEventListener('click', function(e) {     
+    e.events.innerHTML = "C'est cliqué !";   
+})   */

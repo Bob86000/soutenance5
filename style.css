@@ -210,6 +210,14 @@ aside div img
  border: solid black 4px;
  margin-top: 3rem;
 }
+.mainpagectn a
+{
+ display:block;
+ width: 40%;
+ border: solid black 4px;
+ margin-top: 3rem;
+
+}
 .mainpage .imgctn
 {
     display: flex;
