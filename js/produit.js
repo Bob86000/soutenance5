@@ -17,17 +17,14 @@ return responsed.json()
             <h2>${produit[i].name}</h2>
             <div class="articlectn-header1" >
                 <div class="articlectn-choice">
-                <button class=ajout_evenement_pourderoulement>
+                <button id="articlectn_button" class=ajout_evenement_pourderoulement>
                     <label for="vernis">
-                        Personnalisez votre vernis si vous le souhaitez
-                </label> 
+                        Choix du vernis
+                    </label> 
            
                         <select name="DYNAMIK_NAME_CHOICE" id="vernis">
-               
-                        <option value="DYNAMIK_CHOICE1">DYNAMIK_CHOICE1</option>
-                        <option value="DYNAMIK_CHOICE2">DYNAMIK_CHOICE2</option>
-                        <option value="DYNAMIK_CHOICE3">DYNAMIK_CHOICE3</option>
                     </select>
+                    </button>
                 </div>
             </div>
             <div class="articlectn-main1">
@@ -42,12 +39,12 @@ return responsed.json()
    <div class="articlectn-buyctn">
        <h3>${produit[i].name}</h3>
        <div class="articlectn-header2">
-           <p>DYNAMIK_ID</p>
-           <p>LE délai de livraison pour cet article est de 14 jours environ.</p>
+           <p id="ajustvarnish" >Fournie avec le vernis ${produit[i].varnish[0]}.</p>
+           <p>Le délai de livraison pour cet article est de 14 jours environ.</p>
 
        </div>
        <div class="articlectn-main2">
-           <p>"${produit[i].price}"</p>
+           <p>Prix du produit : ${produit[i].price / 1000}£</p>
            <label for="quantité">
                Selection de la quantité
            </label> 
@@ -65,6 +62,20 @@ return responsed.json()
 
         </div>`
    ;
+   for (var j = 0; j < produit[i].varnish.length; j++) {
+   document.getElementById("vernis").innerHTML += `
+   <option id="${produit[i].varnish[j]}" value="${produit[i].varnish[j]}">${produit[i].varnish[j]}</option>`;
+    
+   var event = document.getElementById(`${produit[i].varnish[j]}`).addEventListener("click", function() {
+       document.getElementById("ajustvarnish").innerHTML= `Fournie avec le vernis ${produit[i].varnish[j]}.`;
+       console.log("work");
+   });
+   
+
+
+   
+   }
+   
    console.log("hellosss");
 };
    

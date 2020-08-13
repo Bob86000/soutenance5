@@ -3,11 +3,10 @@ let insa = fetch("http://localhost:3000/api/furniture")
 .then( responsed => {
 return responsed.json()
 } )
-.then( blop => {
-console.log(blop) ; 
-console.log(blop) ; 
+.then( home => {
+console.log(home);
 
-blop.forEach(elements => {
+home.forEach(elements => {
  document.getElementById("sectionid").innerHTML += 
     `<a class="sectionctn" href="produit.html?id=${elements._id}">
         <div class="imgctn">
@@ -18,16 +17,6 @@ blop.forEach(elements => {
             <p>${elements.description}</p>
         </div>
         </a>`; 
-
- var valueHref = document.querySelectorAll('.mainpagectn a');
-
-for (var i = 0, c = valueHref.length ; i < c ; i++) {
-    valueHref[i].addEventListener('click', function () {
-
-        return elements;
-})};
-
-
  });
 
 });
