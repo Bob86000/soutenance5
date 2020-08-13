@@ -172,19 +172,21 @@ h2, h3
 {
     width:100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
-.productpage .otherproduct-selection div
+.productpage .otherproduct-selection .asidectn
 {
     display: flex;
     width: 20%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: bisque;
+    border: solid black 1px;
     
 }
-aside div img
+.asidectn img
 {
     width:80%;
 }

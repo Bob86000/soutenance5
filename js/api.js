@@ -8,20 +8,33 @@ console.log(blop) ;
 console.log(blop) ; 
 
 blop.forEach(elements => {
- document.getElementById("sectionid").innerHTML += "<a href='produit.html'><div class='imgctn'><img  src="+ elements.imageUrl +" /> </div> <h2 class='textctn'><h2>"+ elements.name +"</h2> <p> "+ elements.description +"</p></div></a>"; 
+ document.getElementById("sectionid").innerHTML += 
+    `<a class="sectionctn" href="produit.html?id=${elements._id}">
+        <div class="imgctn">
+            <img  src="${elements.imageUrl}" />
+        </div> 
+        <div class="textctn">
+            <h2>${elements.name}</h2>
+            <p>${elements.description}</p>
+        </div>
+        </a>`; 
 
  var valueHref = document.querySelectorAll('.mainpagectn a');
 
 for (var i = 0, c = valueHref.length ; i < c ; i++) {
     valueHref[i].addEventListener('click', function () {
-        alert(elements);
-        return elements
+
+        return elements;
 })};
 
 
  });
 
 });
+
+/*nom prenom adresse, pas de Date.
+
+trello.com, afficher le menu / plus, copier le tableau .
 
 
 
