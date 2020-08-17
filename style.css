@@ -243,3 +243,33 @@ h2, h3
 {
     text-align: center;
 }
+.basketpage 
+{
+    display: flex;
+    text-align: center;
+    width:100%;
+    background-color: rgba(231, 161, 149, 0.281);
+    justify-content: space-around;
+    flex-direction: row;
+}
+.basketpage-ctn, .basketpage-ctn2
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width:40%;
+}
+.formctn
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width:100%;
+    flex-direction: column;
+}
+.basketpage-ctn
+{
+    flex-direction: column;
+}
