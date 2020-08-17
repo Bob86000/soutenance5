@@ -12,9 +12,21 @@ return responsed.json()
     console.log(produit[0].name);
     for (var i = 0; i < produit.length; i++) {
         if (urlParams.get('id') === produit[i]._id) {
+            var selectquantity= [];
+            var indexquantity=0;
+            while (indexquantity< 5){
+                indexquantity++;
+             selectquantity.push(indexquantity) }
+            if (indexquantity=5) {
+            selectquantity.push(indexquantity+5)}
+            if (indexquantity=10) {
+            selectquantity.push("Très grande quantitée")  
+           
+             console.log(selectquantity)}
+
             document.getElementById("article").innerHTML = `
         <div class="productpagectn" id="productpagectn">
-            <h2>${produit[i].name}</h2>
+            <h2 id="namearticle">${produit[i].name}</h2>
             <div class="articlectn-header1" >
                 <div class="articlectn-choice">
                 <button id="articlectn_button" class=ajout_evenement_pourderoulement>
@@ -44,20 +56,16 @@ return responsed.json()
 
        </div>
        <div class="articlectn-main2">
-           <p>Prix du produit : ${produit[i].price / 1000}£</p>
-           <label for="quantité">
+           <p id="price" >Prix du produit : ${produit[i].price / 1000}£</p>
+           <label for="quantity">
                Selection de la quantité
            </label> 
-           <select name="DYNAMIK_NAME_quantity" id="quantité">
-               
-               <option value="DYNAMIK_QUANTITY1">DYNAMIK_QUANTITY1</option>
-               <option value="DYNAMIK_QUANTITY2">DYNAMIK_QUANTITY2</option>
-               <option value="DYNAMIK_QUANTITY3">DYNAMIK_QUANTITY3</option>
+           <select name="DYNAMIK_NAME_quantity" id="quantity" class="select-quantity">
           </select>
        </div>
        <div class="articlectn-footer2">
-           <button><p>Acheter cet article</p></button>
-           <button><p>Ajouter au panier</p></button>
+           <button class="addtocard" ><p>Acheter cet article</p></button>
+           <button class="addtocard" ><p>Ajouter au panier</p></button>
        </div>
 
         </div>`;
@@ -69,6 +77,13 @@ return responsed.json()
    document.getElementById("vernis").innerHTML += `
    <option id="${produit[i].varnish[j]}" class="varnishclass" value="${produit[i].varnish[j]}">${produit[i].varnish[j]}</option>`;
     }
+    
+    for (var k = 0; k < selectquantity.length; k++) {
+        document.getElementById("quantity").innerHTML += `
+       <option id="quantity${selectquantity[k]}" class="selectquantityclass" value="${selectquantity[k]}">${selectquantity[k]}</option>`;
+    
+        }
+    
     }
    
         if (urlParams.get('id') !== produit[i]._id) {
@@ -82,13 +97,49 @@ return responsed.json()
         function modifyselect(X) {document.getElementById("ajustvarnish").innerHTML= `Fournie avec le vernis ${X.id}`; }
   
         var varnishchoice = document.getElementsByClassName('varnishclass') ;       
-        for(k=0; k<varnishchoice.length; k++)
+        for(l=0; l<varnishchoice.length; l++)
         {
-            varnishchoice[k].addEventListener('click', function(){modifyselect(this);}) ;
+            varnishchoice[l].addEventListener('click', function(){modifyselect(this);}) ;
+        }
+
+
+        var calculate = 
+        {
+            fullprice: function (y) {
+                for (var i = 0; i < produit.length; i++) {
+                    if (urlParams.get('id') === produit[i]._id) {
+                        return ((y)*produit[i].price)/1000};};
+        }
+        }
+
+       
+  
+        var totalprice = document.getElementsByClassName('selectquantityclass') ;       
+        for(m=0; m<selectquantity.length; m++)
+        {   
+            modifyprice(totalprice[m],selectquantity[m]);
+        }
+
+        function modifyprice(x,y) {
+           x.addEventListener('click', function(){
+               if (y==1) {
+            document.getElementById("price").innerHTML= `Prix du produit : ${calculate.fullprice(y)}£`; }
+            else {document.getElementById("price").innerHTML= `Prix des produits : ${calculate.fullprice(y)}£`;}
+           })
         }
     
-    
 
+        var addtocard = document.getElementsByClassName('addtocard'); 
+        for(n=0; n<addtocard.length; n++)
+        {   
+            sendtostorage(addtocard[n]);
+        }
+
+        function sendtostorage(p) {
+           p.addEventListener('click', function(){
+            var der = document.getElementById("namearticle").innerHTML;
+            alert(der);
+        })}
 }
 )
 ;

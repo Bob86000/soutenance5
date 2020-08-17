@@ -239,3 +239,7 @@ h2, h3
     width: 100%;
     border: solid black 4px;
 }
+.select-quantity
+{
+    text-align: center;
+}
