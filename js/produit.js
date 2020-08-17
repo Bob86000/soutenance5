@@ -56,7 +56,7 @@ return responsed.json()
 
        </div>
        <div class="articlectn-main2">
-           <p id="price" >Prix du produit : ${produit[i].price / 1000}£</p>
+           <p >Prix du produit : <span id="price">${produit[i].price / 1000}</span>£</p>
            <label for="quantity">
                Selection de la quantité
            </label> 
@@ -123,11 +123,10 @@ return responsed.json()
         function modifyprice(x,y) {
            x.addEventListener('click', function(){
                if (y==1) {
-            document.getElementById("price").innerHTML= `Prix du produit : ${calculate.fullprice(y)}£`; }
-            else {document.getElementById("price").innerHTML= `Prix des produits : ${calculate.fullprice(y)}£`;}
+            document.getElementById("price").innerHTML= `${calculate.fullprice(y)}`; }
+            else {document.getElementById("price").innerHTML= `${calculate.fullprice(y)}`;}
            })
         }
-    
 
         var addtocard = document.getElementsByClassName('addtocard'); 
         for(n=0; n<addtocard.length; n++)
@@ -137,9 +136,21 @@ return responsed.json()
 
         function sendtostorage(p) {
            p.addEventListener('click', function(){
-            var der = document.getElementById("namearticle").innerHTML;
-            alert(der);
-        })}
+            var obsJsonlocalstorage = [
+                {
+                achat : 
+                    { 
+            namearticle : document.getElementById("namearticle").innerHTML,
+            quantityarticle : document.getElementById("quantity").value,
+            optionarticle : document.getElementById("vernis").value,
+            pricearticle : document.getElementById("price").innerHTML 
+            }
+                }];
+                obsJsonlocalstorage.push(JSON.parse(localStorage.getItem('session')));
+            localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
+})}
+            
+            
 }
 )
 ;
