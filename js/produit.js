@@ -60,39 +60,35 @@ return responsed.json()
            <button><p>Ajouter au panier</p></button>
        </div>
 
-        </div>`
-   ;
+        </div>`;
+
+   
+
    for (var j = 0; j < produit[i].varnish.length; j++) {
+      
    document.getElementById("vernis").innerHTML += `
-   <option id="${produit[i].varnish[j]}" value="${produit[i].varnish[j]}">${produit[i].varnish[j]}</option>`;
-    
-   var event = document.getElementById(`${produit[i].varnish[j]}`).addEventListener("click", function() {
-       document.getElementById("ajustvarnish").innerHTML= `Fournie avec le vernis ${produit[i].varnish[j]}.`;
-       console.log("work");
-   });
-   
-
-
-   
-   }
-   
-   console.log("hellosss");
-};
+   <option id="${produit[i].varnish[j]}" class="varnishclass" value="${produit[i].varnish[j]}">${produit[i].varnish[j]}</option>`;
+    }
+    }
    
         if (urlParams.get('id') !== produit[i]._id) {
             document.getElementById("otherproduct-selection").innerHTML +=`
                 <a href="produit.html?id=${produit[i]._id}" class="asidectn"> 
                     <h4> ${produit[i].name}</h4> 
                     <img src="${produit[i].imageUrl}" />
-                </a>`; 
-        console.log("hello");
-        };
-        
-        
+                </a>`;
+        };};
 
+        function modifyselect(X) {document.getElementById("ajustvarnish").innerHTML= `Fournie avec le vernis ${X.id}`; }
+  
+        var varnishchoice = document.getElementsByClassName('varnishclass') ;       
+        for(k=0; k<varnishchoice.length; k++)
+        {
+            varnishchoice[k].addEventListener('click', function(){modifyselect(this);}) ;
+        }
+    
+    
 
-    }
-    ;
 }
 )
 ;
