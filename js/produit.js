@@ -4,153 +4,159 @@ console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
 console.log(urlParams.get('id'));
 
-fetch("http://localhost:3000/api/furniture/")
+fetch("http://localhost:3000/api/furniture/"+urlParams.get('id'))
 .then( responsed => {
 return responsed.json()
 } )
 .then(produit =>{
-    console.log(produit[0].name);
-    for (var i = 0; i < produit.length; i++) {
-        if (urlParams.get('id') === produit[i]._id) {
-            var selectquantity= [];
-            var indexquantity=0;
-            while (indexquantity< 5){
-                indexquantity++;
-             selectquantity.push(indexquantity) }
-            if (indexquantity=5) {
-            selectquantity.push(indexquantity+5)}
-            if (indexquantity=10) {
-            selectquantity.push("Très grande quantitée")  
-           
-             console.log(selectquantity)}
-
+    console.log(produit.name);
             document.getElementById("article").innerHTML = `
         <div class="productpagectn" id="productpagectn">
-            <h2 id="namearticle">${produit[i].name}</h2>
+            <h2 id="namearticle">${produit.name}</h2>
             <div class="articlectn-header1" >
                 <div class="articlectn-choice">
-                <button id="articlectn_button" class=ajout_evenement_pourderoulement>
-                    <label for="vernis">
+                    <button id="articlectn_button" class=ajout_evenement_pourderoulement>
+                        <label for="vernis">
                         Choix du vernis
-                    </label> 
-           
+                        </label>
                         <select name="DYNAMIK_NAME_CHOICE" id="vernis">
-                    </select>
+                        </select>
                     </button>
                 </div>
             </div>
             <div class="articlectn-main1">
-                <p> "DYNAMIK_LINK_IMAGE"</p> 
-                <img src="${produit[i].imageUrl}" />  
+                <img src="${produit.imageUrl}" />  
             </div>
             <div class="articlectn-footer1">
-                <p>"${produit[i].description}"</p>
+                <p>"${produit.description}"</p>
             </div>
-  
-   </div>
-   <div class="articlectn-buyctn">
-       <h3>${produit[i].name}</h3>
-       <div class="articlectn-header2">
-           <p id="ajustvarnish" >Fournie avec le vernis ${produit[i].varnish[0]}.</p>
-           <p>Le délai de livraison pour cet article est de 14 jours environ.</p>
+        </div>
+        <div class="articlectn-buyctn">
+            <h3>${produit.name}</h3>
+            <div class="articlectn-header2">
+            <p id="ajustvarnish" >Fournie avec le vernis ${produit.varnish[0]}.</p>
+            <p>Le délai de livraison pour cet article est de 14 jours environ.</p>
 
-       </div>
-       <div class="articlectn-main2">
-           <p >Prix du produit : <span id="price">${produit[i].price / 1000}</span>£</p>
+        </div>
+        <div class="articlectn-main2">
+           <p >Prix du produit : 
+                <span id="price">${produit.price / 1000}</span>£</p>
            <label for="quantity">
                Selection de la quantité
            </label> 
-           <select name="DYNAMIK_NAME_quantity" id="quantity" class="select-quantity">
-          </select>
-       </div>
-       <div class="articlectn-footer2">
+           <input type="number" id="number" name="quantity" value="1" min="1" max="15">
+        </div>
+        <div class="articlectn-footer2">
            <button class="addtocard" ><p>Acheter cet article</p></button>
            <button class="addtocard" ><p>Ajouter au panier</p></button>
-       </div>
+        </div>
 
         </div>`;
 
    
 
-   for (var j = 0; j < produit[i].varnish.length; j++) {
-      
-   document.getElementById("vernis").innerHTML += `
-   <option id="${produit[i].varnish[j]}" class="varnishclass" value="${produit[i].varnish[j]}">${produit[i].varnish[j]}</option>`;
+    for (var j = 0; j < produit.varnish.length; j++) {
+    document.getElementById("vernis").innerHTML += `
+    <option id="${produit.varnish[j]}" class="varnishclass" value="${produit.varnish[j]}">${produit.varnish[j]}</option>`;
     }
+
+    let  varnishchoice = document.getElementById("vernis");
+    varnishchoice.addEventListener('change', function(e)
+    {document.getElementById("ajustvarnish").innerHTML= `Fournie avec le vernis ${e.currentTarget.value}`});
+
+    let calculate = 
+    {
+        fullprice: function (y) 
+                { return ((y)*produit.price)/1000}
+    };
     
-    for (var k = 0; k < selectquantity.length; k++) {
-        document.getElementById("quantity").innerHTML += `
-       <option id="quantity${selectquantity[k]}" class="selectquantityclass" value="${selectquantity[k]}">${selectquantity[k]}</option>`;
-    
-        }
-    
-    }
-   
-        if (urlParams.get('id') !== produit[i]._id) {
-            document.getElementById("otherproduct-selection").innerHTML +=`
-                <a href="produit.html?id=${produit[i]._id}" class="asidectn"> 
-                    <h4> ${produit[i].name}</h4> 
-                    <img src="${produit[i].imageUrl}" />
-                </a>`;
-        };};
+    document.getElementById("number").addEventListener('change', function(e)
+        {document.getElementById("price").innerHTML= calculate.fullprice(e.currentTarget.value);})
+        
 
-        function modifyselect(X) {document.getElementById("ajustvarnish").innerHTML= `Fournie avec le vernis ${X.id}`; }
-  
-        var varnishchoice = document.getElementsByClassName('varnishclass') ;       
-        for(l=0; l<varnishchoice.length; l++)
-        {
-            varnishchoice[l].addEventListener('click', function(){modifyselect(this);}) ;
-        }
-
-
-        var calculate = 
-        {
-            fullprice: function (y) {
-                for (var i = 0; i < produit.length; i++) {
-                    if (urlParams.get('id') === produit[i]._id) {
-                        return ((y)*produit[i].price)/1000};};
-        }
-        }
-
-       
-  
-        var totalprice = document.getElementsByClassName('selectquantityclass') ;       
-        for(m=0; m<selectquantity.length; m++)
-        {   
-            modifyprice(totalprice[m],selectquantity[m]);
-        }
-
-        function modifyprice(x,y) {
-           x.addEventListener('click', function(){
-               if (y==1) {
-            document.getElementById("price").innerHTML= `${calculate.fullprice(y)}`; }
-            else {document.getElementById("price").innerHTML= `${calculate.fullprice(y)}`;}
-           })
-        }
-
-        var addtocard = document.getElementsByClassName('addtocard'); 
-        for(n=0; n<addtocard.length; n++)
+     var addtocard = document.getElementsByClassName('addtocard'); 
+    for(n=0; n<addtocard.length; n++)
         {   
             sendtostorage(addtocard[n]);
         }
 
         function sendtostorage(p) {
-           p.addEventListener('click', function(){
-            var obsJsonlocalstorage = [
+           p.addEventListener('click', function()
+           {
+            var obsJsonlocalstorage = [];
+            obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
+            var valueSendToStorage =
                 {
-                achat : 
-                    { 
-            namearticle : document.getElementById("namearticle").innerHTML,
-            quantityarticle : document.getElementById("quantity").value,
-            optionarticle : document.getElementById("vernis").value,
-            pricearticle : document.getElementById("price").innerHTML 
-            }
-                }];
-                obsJsonlocalstorage.push(JSON.parse(localStorage.getItem('session')));
+                    achat :
+                    {
+                        namearticle : document.getElementById("namearticle").innerHTML,
+                        numberofoptionarticle : {
+                            optionarticle : document.getElementById("vernis").value,
+                            quantityoptionarticle : document.getElementById("number").value
+                        },
+                        pricearticle : document.getElementById("price").innerHTML, 
+                        quantityarticle : document.getElementById("number").value
+                    }
+                };
+                function modifyValueSendToStorage() {
+                    var  modifyValueSendToStorage =
+                    {
+                    achat :
+                    {
+                        namearticle : obsJsonlocalstorage.namearticle,
+                        numberofoptionarticle : {
+                            optionarticle : obsJsonlocalstorage.numberofoptionarticle.optionarticle,
+                            quantityoptionarticle : obsJsonlocalstorage.numberofoptionarticle.quantityoptionarticle + valueSendToStorage.numberofoptionarticle.quantityoptionarticle
+                        },
+                        pricearticle : obsJsonlocalstorage.price + valueSendToStorage.price, 
+                        quantityarticle : obsJsonlocalstorage.quantityarticle + valueSendToStorage.quantityarticle
+                    }
+                }
+                obsJsonlocalstorage.push(modifyValueSendToStorage);
+                }
+                if (obsJsonlocalstorage.achat.namearticle == false) {
+                    obsJsonlocalstorage.push(valueSendToStorage);
+                }
+                if (obsJsonlocalstorage.achat.namearticle == true & valueSendToStorage.achat.namearticle !== obsJsonlocalstorage.achat.namearticle)
+                {
+                    obsJsonlocalstorage.push(valueSendToStorage);
+                }
+                else 
+                {
+                    modifyValueSendToStorage();
+                }
+            
             localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
-})}
+            console.table(obsJsonlocalstorage);
+            }
+            )
+            }
+
+            /*
+            parcourir le tableau de l'objet storage , et en fonction des cas placer le localStorage.setItem avec la variable modifié ou pas
             
             
-}
-)
-;
+            verifier que getitem renvoie quelque cvhose sinon faire un tableau
+             ensuite on peut pusher un objet literale 
+             ensuite poser les set DataTransferItem, et faire attention a l'array de class name qui renvoie pas fvraiment un tableau
+
+             e.target.value
+
+             l'affichage d'abord les fonctions qu'on appele et ensuite les fonctions déclarative.(retirer l'id et faire un autre fetch)*/
+
+            })
+
+fetch("http://localhost:3000/api/furniture/")
+.then( responsedfooter => {
+ return responsedfooter.json()
+} )
+.then(produitfooter =>{
+    console.table(produitfooter);
+    for (var i = 0; i < produitfooter.length; i++){
+if (urlParams.get('id') !== produitfooter[i]._id) {
+            document.getElementById("otherproduct-selection").innerHTML +=`
+                <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn"> 
+                    <h4> ${produitfooter[i].name}</h4> 
+                    <img src="${produitfooter[i].imageUrl}" />
+                </a>`;}
+        };});
