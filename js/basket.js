@@ -35,6 +35,13 @@ return responsed.json()
         </div>
     </div>`;
 
+    document.getElementById("name").addEventListener('input', function(e) {
+        var value = e.target.value;
+        function isValid(value) {
+            return /^[a-zA-Z]{0,16} [a-zA-Z]{0,16}$/.test(value);
+        }    
+    });
+
         
 
 

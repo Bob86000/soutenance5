@@ -40,21 +40,21 @@
 
                 </div>
                 <form class="formctn">
-                    <div class="form-example">
-                        <label for="name">Votre nom:</label>
-                        <input type="text" name="name" id="name" required>
+                    <div class="nameform">
+                        <label for="nameform">Votre nom:</label>
+                        <input type="text" name="nameform" id="nameform" required pattern="[a-zA-Z]{4,16} [a-zA-Z]{4,16}" placeholder="ex:Oscar Develoupay">
                       </div>
-                      <div class="form-example">
-                        <label for="email"></label>Adresse de livraison:</label>
-                        <input type="email" name="email" id="email" required>
+                      <div class="shippingaddress">
+                        <label for="shippingaddress"></label>Adresse de livraison:</label>
+                        <input type="text" name="shippingaddress" id="shippingaddress" required pattern="[0-9]{1,4} [a-zA-Z\s0-9]{1,45}" placeholder="ex:17 rue plambert 47500 Brest">
                       </div>
-                      <div class="form-example">
-                        <label for="email"></label>Adresse de facturation:</label>
-                        <input type="email" name="email" id="email" required>
+                      <div class="paymentaddress">
+                        <label for="paymentaddress"></label>Adresse de facturation:</label>
+                        <input type="text" name="paymentaddress" id="paymentaddress" required pattern="[0-9]{1,4} [a-zA-Z\s0-9]{1,45}" placeholder="ex:17 rue plambert 47500 Brest">
                       </div>
-                      <div class="form-example">
-                        <label for="email"></label>Votre numéro de téléphone:</label>
-                        <input type="email" name="email" id="email" required>
+                      <div class="telephonenumber">
+                        <label for="telephonenumber"></label>Votre numéro de téléphone:</label>
+                        <input type="text" name="telephonenumber" id="telephonenumber" required pattern="[0-9]{1,16}" placeholder="ex:0101010101">
                       </div>
                       <div class="form-example">
                         <label for="email"></label>Moyen de livraison:</label>
@@ -74,16 +74,15 @@
                         </select>
                     </div>
                     <div>
-                    <label for="cardnumber">Numero de carte(déjà renseigné)</label>:
+                    <label for="cardnumber">Numero de carte</label>:
                     <input type="password" id="cardnumber" name="cardnumber" required
-                        minlength="16" maxlength="16" size="16" placeholder="00001111000011110000" />
+                        minlength="16" maxlength="16" size="16" required pattern="[0-9]{16}" placeholder="00001111000" />
                     </div>
                     <div>
                     <label for="cardexpirationdate">Date d'expiration de la carte</label>
-                    <input type="text" id="cardexpirationdatemonth" name="cardexpirationdate" required
-                    minlength="2" maxlength="2" size="10" placeholder="Mois"/>
+                    <input type="text" id="cardexpirationdatemonth" name="cardexpirationdate" required pattern="[0]{1}[1-9]{1}|[10-12]{2}" placeholder="Mois ex:06"/>
                     <input type="text" id="cardexpirationdateyear" name="cardexpirationdate" required
-                    minlength="4" maxlength="4" size="10" placeholder="Années" />
+                    pattern="[2]{1}[0]{1}[2-3]{1}[0-9]{1}" placeholder="Années ex:2020" />
                     </div>
                     
                 </form>
