@@ -86,33 +86,116 @@ return responsed.json()
             var obsJsonlocalstorage = [];
             obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
             var valueSendToStorage =
-                {
-                    achat :
-                    {
+             {
                         namearticle : document.getElementById("namearticle").innerHTML,
                         numberofoptionarticle : {
                             optionarticle : document.getElementById("vernis").value,
                             quantityoptionarticle : document.getElementById("number").value
                         },
-                        pricearticle : document.getElementById("price").innerHTML, 
+                        pricearticle : parseInt(document.getElementById("price").innerHTML)*1000, 
                         quantityarticle : document.getElementById("number").value
                     }
-                };
-                function modifyValueSendToStorage() {
-                    var  modifyValueSendToStorage =
+                ;
+                let verification = false;
+                function findValueSendToStorage (articleExists) {
+                    return articleExists.namearticle == valueSendToStorage.namearticle;
+                }
+                function findValueOptionArticleSendToStorage (optionarticleExists) {
+                    return optionarticleExists.numberofoptionarticle.optionarticle == valueSendToStorage.numberofoptionarticle.optionarticle;   
+                }
+
+
+                if (obsJsonlocalstorage == false) {
+                    obsJsonlocalstorage.push(valueSendToStorage);
+                }
+                else {
+                    console.log(!obsJsonlocalstorage.find(findValueSendToStorage));
+                    if (!obsJsonlocalstorage.find(findValueSendToStorage))
                     {
+                        console.log( "Attention L'article n'existe pas");
+                        obsJsonlocalstorage.push(valueSendToStorage);
+                    }
+                    else {
+                        for (var k = 0; k < obsJsonlocalstorage.length; k++)
+                        {
+                    if (valueSendToStorage.namearticle === obsJsonlocalstorage[k].namearticle && obsJsonlocalstorage.find(findValueOptionArticleSendToStorage))
+                        {
+                            verification = true;
+                            console.log("Attention la Verification d'un article existant deja n'eeeeest "+verification);
+                    if (verification) {
+
+                        let  modifyValueSendToStorage =
+                    {
+                        namearticle : obsJsonlocalstorage[k].namearticle,
+                        numberofoptionarticle : {
+                            optionarticle : obsJsonlocalstorage[k].numberofoptionarticle.optionarticle,
+                            quantityoptionarticle : parseInt(obsJsonlocalstorage[k].numberofoptionarticle.quantityoptionarticle) + parseInt(valueSendToStorage.numberofoptionarticle.quantityoptionarticle)
+                        },
+                        pricearticle : parseInt(obsJsonlocalstorage[k].pricearticle) + parseInt(valueSendToStorage.pricearticle), 
+                        quantityarticle : parseInt(obsJsonlocalstorage[k].quantityarticle) + parseInt(valueSendToStorage.quantityarticle)
+                    };
+                    obsJsonlocalstorage[k] = modifyValueSendToStorage;
+                }}
+
+
+
+                    else if (valueSendToStorage.namearticle === obsJsonlocalstorage[k].namearticle && !obsJsonlocalstorage.find(findValueOptionArticleSendToStorage))
+                        {
+                            verification = true;
+                            console.log("Attention la Verification d'un article existant deja est "+verification);
+                            console.log(!obsJsonlocalstorage.find(findValueOptionArticleSendToStorage));
+                    if (verification) {
+                        
+                        let  modifyValueSendToStorage =
+                    {
+                        namearticle : obsJsonlocalstorage[k].namearticle,
+                        numberofoptionarticle : {
+                            optionarticle : obsJsonlocalstorage[k].numberofoptionarticle.optionarticle,
+                            quantityoptionarticle : parseInt(obsJsonlocalstorage[k].numberofoptionarticle.quantityoptionarticle)
+                        },
+                        pricearticle : parseInt(obsJsonlocalstorage[k].pricearticle) + parseInt(valueSendToStorage.pricearticle), 
+                        quantityarticle : parseInt(obsJsonlocalstorage[k].quantityarticle) + parseInt(valueSendToStorage.quantityarticle)
+                    };
+                    console.log( "Attention L'option d'article n'existe pas");
+                        obsJsonlocalstorage[k] = modifyValueSendToStorage;
+                        obsJsonlocalstorage[k].numberofoptionarticle.push(valueSendToStorage.numberofoptionarticle);
+                }}
+                        
+
+
+                        
+                        
+                    }
+                
+                }
+            }
+            
+            localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
+            console.table(obsJsonlocalstorage);
+
+
+
+
+        })
+                     
+
+                
+
+
+
+
+                /*obsJsonlocalstorage = {
                     achat :
                     {
                         namearticle : obsJsonlocalstorage.namearticle,
                         numberofoptionarticle : {
-                            optionarticle : obsJsonlocalstorage.numberofoptionarticle.optionarticle,
-                            quantityoptionarticle : obsJsonlocalstorage.numberofoptionarticle.quantityoptionarticle + valueSendToStorage.numberofoptionarticle.quantityoptionarticle
+                            optionarticle : document.getElementById("vernis").value,
+                            quantityoptionarticle : modifyValueSendToStorage.achat.quantityoptionarticle
                         },
-                        pricearticle : obsJsonlocalstorage.price + valueSendToStorage.price, 
-                        quantityarticle : obsJsonlocalstorage.quantityarticle + valueSendToStorage.quantityarticle
+                        pricearticle : document.getElementById("price").innerHTML, 
+                        quantityarticle : document.getElementById("number").value
                     }
-                }
-                obsJsonlocalstorage.push(modifyValueSendToStorage);
+                };
                 }
                 if (obsJsonlocalstorage.achat.namearticle == false) {
                     obsJsonlocalstorage.push(valueSendToStorage);
@@ -125,13 +208,25 @@ return responsed.json()
                 {
                     modifyValueSendToStorage();
                 }
+            */
             
-            localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
-            console.table(obsJsonlocalstorage);
-            }
-            )
-            }
 
+
+           /* var  modifyValueSendToStorage =
+                    {
+                    achat :
+                    {
+                        namearticle : obsJsonlocalstorage.namearticle,
+                        numberofoptionarticle : {
+                            optionarticle : obsJsonlocalstorage.numberofoptionarticle.optionarticle,
+                            quantityoptionarticle : obsJsonlocalstorage.numberofoptionarticle.quantityoptionarticle + valueSendToStorage.numberofoptionarticle.quantityoptionarticle
+                        },
+                        pricearticle : obsJsonlocalstorage.price + valueSendToStorage.price, 
+                        quantityarticle : obsJsonlocalstorage.quantityarticle + valueSendToStorage.quantityarticle
+                    }}
+
+                    console.table(modifyValueSendToStorage);*/
+            }
             /*
             parcourir le tableau de l'objet storage , et en fonction des cas placer le localStorage.setItem avec la variable modifié ou pas
             
