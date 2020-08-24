@@ -35,7 +35,7 @@
         <main class="basketpage">
             <article class="basketpage-ctn">
                 <div class="resumectn">
-                    <p>Récapitulatif de votre commande</p>
+                    <p>Votre commande</p>
                     <div class="DYNAMINK_DIV" ></div>
 
                 </div>
@@ -45,7 +45,11 @@
                         <input type="text" name="name" id="name" required>
                       </div>
                       <div class="form-example">
-                        <label for="email"></label>Votre adresse:</label>
+                        <label for="email"></label>Adresse de livraison:</label>
+                        <input type="email" name="email" id="email" required>
+                      </div>
+                      <div class="form-example">
+                        <label for="email"></label>Adresse de facturation:</label>
                         <input type="email" name="email" id="email" required>
                       </div>
                       <div class="form-example">
@@ -53,21 +57,60 @@
                         <input type="email" name="email" id="email" required>
                       </div>
                       <div class="form-example">
-                        <input type="submit" value="Subscribe!">
+                        <label for="email"></label>Moyen de livraison:</label>
+                        <select id="list">
+                            <option>A votre adresse </option>
+                            <option>En point relais</option>
+                        </select>
                       </div>
                 </form>
+                <form class="paymentform">
+                    <div>
+                        <label for="paymentselected">Votre moyen de paiement</label>: 
+                        <select id="list">
+                            <option>VISA </option>
+                            <option>MASTERCARD</option>
+                            <option>ELECTRON</option>
+                        </select>
+                    </div>
+                    <div>
+                    <label for="cardnumber">Numero de carte(déjà renseigné)</label>:
+                    <input type="password" id="cardnumber" name="cardnumber" required
+                        minlength="16" maxlength="16" size="16" placeholder="00001111000011110000" />
+                    </div>
+                    <div>
+                    <label for="cardexpirationdate">Date d'expiration de la carte</label>
+                    <input type="text" id="cardexpirationdatemonth" name="cardexpirationdate" required
+                    minlength="2" maxlength="2" size="10" placeholder="Mois"/>
+                    <input type="text" id="cardexpirationdateyear" name="cardexpirationdate" required
+                    minlength="4" maxlength="4" size="10" placeholder="Années" />
+                    </div>
+                    
+                </form>
+                <div>
+                    <p> Recapitulatif des informations</p>
+                </div>
                
 
 
 
             </article>
-            <article class=basketpage-ctn2>
+            <article id="basketpage-ctn2" class="basketpage-ctn2">
                 <h2>Votre panier</h2>
-
+                <div id="articlebasketpage-ctn2" class="articlebasketpage-ctn2"></div>
+                
             </article>
+            <aside id="ordervalidation" class="ordervalidation">
+
+            </aside>
+            
         </main>
 
-        <footer></footer>
+        <footer class=otherproduct>
+            Nos autres produits
+            <div id="otherproduct-selection" class="otherproduct-selection">
+        </div>
+        </footer>
 
 
 

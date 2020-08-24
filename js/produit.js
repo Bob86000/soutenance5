@@ -88,11 +88,11 @@ return responsed.json()
             var valueSendToStorage =
              {
                         namearticle : document.getElementById("namearticle").innerHTML,
-                        numberofoptionarticle : {
+                        numberofoptionarticle : [{
                             optionarticle : document.getElementById("vernis").value,
                             quantityoptionarticle : document.getElementById("number").value
-                        },
-                        pricearticle : parseInt(document.getElementById("price").innerHTML)*1000, 
+                        }],
+                        pricearticle : (document.getElementById("price").innerHTML)*1000, 
                         quantityarticle : document.getElementById("number").value
                     }
                 ;
@@ -101,7 +101,7 @@ return responsed.json()
                     return articleExists.namearticle == valueSendToStorage.namearticle;
                 }
                 function findValueOptionArticleSendToStorage (optionarticleExists) {
-                    return optionarticleExists.numberofoptionarticle.optionarticle == valueSendToStorage.numberofoptionarticle.optionarticle;   
+                    return optionarticleExists.optionarticle == valueSendToStorage.numberofoptionarticle[0].optionarticle;   
                 }
 
 
@@ -118,7 +118,8 @@ return responsed.json()
                     else {
                         for (var k = 0; k < obsJsonlocalstorage.length; k++)
                         {
-                    if (valueSendToStorage.namearticle === obsJsonlocalstorage[k].namearticle && obsJsonlocalstorage.find(findValueOptionArticleSendToStorage))
+                            for (var m=0; m < obsJsonlocalstorage[k].numberofoptionarticle.length; m++ ) {
+                    if (valueSendToStorage.namearticle === obsJsonlocalstorage[k].namearticle && valueSendToStorage.numberofoptionarticle[0].optionarticle === obsJsonlocalstorage[k].numberofoptionarticle[m].optionarticle)
                         {
                             verification = true;
                             console.log("Attention la Verification d'un article existant deja n'eeeeest "+verification);
@@ -127,10 +128,10 @@ return responsed.json()
                         let  modifyValueSendToStorage =
                     {
                         namearticle : obsJsonlocalstorage[k].namearticle,
-                        numberofoptionarticle : {
-                            optionarticle : obsJsonlocalstorage[k].numberofoptionarticle.optionarticle,
-                            quantityoptionarticle : parseInt(obsJsonlocalstorage[k].numberofoptionarticle.quantityoptionarticle) + parseInt(valueSendToStorage.numberofoptionarticle.quantityoptionarticle)
-                        },
+                        numberofoptionarticle : [{
+                            optionarticle : obsJsonlocalstorage[k].numberofoptionarticle[m].optionarticle,
+                            quantityoptionarticle : parseInt(obsJsonlocalstorage[k].numberofoptionarticle[m].quantityoptionarticle) + parseInt(valueSendToStorage.numberofoptionarticle[0].quantityoptionarticle)
+                        }],
                         pricearticle : parseInt(obsJsonlocalstorage[k].pricearticle) + parseInt(valueSendToStorage.pricearticle), 
                         quantityarticle : parseInt(obsJsonlocalstorage[k].quantityarticle) + parseInt(valueSendToStorage.quantityarticle)
                     };
@@ -139,35 +140,29 @@ return responsed.json()
 
 
 
-                    else if (valueSendToStorage.namearticle === obsJsonlocalstorage[k].namearticle && !obsJsonlocalstorage.find(findValueOptionArticleSendToStorage))
+                    else if (valueSendToStorage.namearticle === obsJsonlocalstorage[k].namearticle && !obsJsonlocalstorage[k].numberofoptionarticle.find(findValueOptionArticleSendToStorage))
                         {
                             verification = true;
-                            console.log("Attention la Verification d'un article existant deja est "+verification);
+                            console.log("hellllllo");
                             console.log(!obsJsonlocalstorage.find(findValueOptionArticleSendToStorage));
                     if (verification) {
                         
                         let  modifyValueSendToStorage =
                     {
                         namearticle : obsJsonlocalstorage[k].namearticle,
-                        numberofoptionarticle : {
-                            optionarticle : obsJsonlocalstorage[k].numberofoptionarticle.optionarticle,
-                            quantityoptionarticle : parseInt(obsJsonlocalstorage[k].numberofoptionarticle.quantityoptionarticle)
-                        },
+                        numberofoptionarticle : obsJsonlocalstorage[k].numberofoptionarticle,
                         pricearticle : parseInt(obsJsonlocalstorage[k].pricearticle) + parseInt(valueSendToStorage.pricearticle), 
                         quantityarticle : parseInt(obsJsonlocalstorage[k].quantityarticle) + parseInt(valueSendToStorage.quantityarticle)
                     };
                     console.log( "Attention L'option d'article n'existe pas");
+                    console.log(obsJsonlocalstorage[k].numberofoptionarticle);
+
+                        modifyValueSendToStorage.numberofoptionarticle.push(valueSendToStorage.numberofoptionarticle[0]);
                         obsJsonlocalstorage[k] = modifyValueSendToStorage;
-                        obsJsonlocalstorage[k].numberofoptionarticle.push(valueSendToStorage.numberofoptionarticle);
                 }}
-                        
-
-
-                        
-                        
-                    }
+              }
                 
-                }
+                }}
             }
             
             localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
@@ -184,31 +179,6 @@ return responsed.json()
 
 
 
-                /*obsJsonlocalstorage = {
-                    achat :
-                    {
-                        namearticle : obsJsonlocalstorage.namearticle,
-                        numberofoptionarticle : {
-                            optionarticle : document.getElementById("vernis").value,
-                            quantityoptionarticle : modifyValueSendToStorage.achat.quantityoptionarticle
-                        },
-                        pricearticle : document.getElementById("price").innerHTML, 
-                        quantityarticle : document.getElementById("number").value
-                    }
-                };
-                }
-                if (obsJsonlocalstorage.achat.namearticle == false) {
-                    obsJsonlocalstorage.push(valueSendToStorage);
-                }
-                if (obsJsonlocalstorage.achat.namearticle == true & valueSendToStorage.achat.namearticle !== obsJsonlocalstorage.achat.namearticle)
-                {
-                    obsJsonlocalstorage.push(valueSendToStorage);
-                }
-                else 
-                {
-                    modifyValueSendToStorage();
-                }
-            */
             
 
 
