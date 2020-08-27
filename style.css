@@ -8,6 +8,8 @@ html, body
 {  
     margin: 0;
     padding: 0;
+    background-color: black;
+    
 }
 .main_wrapper
 {
@@ -15,6 +17,7 @@ html, body
     width: 90%;
     flex-direction: column;
     margin: auto;
+    background: url("img/pexels-joey-kyber-129743.jpg");
 }
 h1
 {
@@ -22,20 +25,71 @@ h1
 }
 h2
 {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 h3
 {
-    font-size: 2rem;
+    font-size: 3rem;
+}
+h4
+{
+    font-size: 1.5rem;
 }
 p
 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
-
+li
+{
+    font-size: 2rem;
+}
+label
+{
+    font-size: 1.5rem;
+}
+.productpagectn label
+{
+    font-size: 1.1rem;
+}
+.productpage-otherproduct p
+{
+    font-size: 2rem;
+}
 .fas
 {
     font-size:8rem;
+}
+li .fas
+{
+    font-size: 4rem;
+    color: black;
+}
+.dynamiqueli
+{
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+}
+.basketnumber
+{
+    position: absolute;
+    border: black solid 3px;
+    border-radius: 80%;
+    top: -35px;
+    left: 23px;
+    background-color: white;
+    text-align: center;
+    justify-content: center;
+    font-size: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: black;
+    
+}
+.basketfont
+{
+    display:flex;
+    position: relative;
 }
 header ,.headerctn-header
 {
@@ -44,17 +98,29 @@ header ,.headerctn-header
 }
 header
 {
-    border: solid black 2px;
-    background-color: rgb(235, 154, 125);
+    border: solid black 20px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    background: url("img/texture-paper.png");
+    background-color: #5b3c28;
+    background-size: 280px 280px;
 }
 .headerctn-logo
 {
     display: flex;
     width: 50%;
+    align-items: center;
+    margin-left: 3rem;
 }
 .title
 {
-    width: 30%;
+    width: 40%;
+    display: flex;
+}
+a
+{
+    text-decoration: none;
+    color: black
 }
 .logo 
 {
@@ -75,11 +141,13 @@ header nav ul
 header nav ul li 
 {
     display: flex;
+
 }
 section
 {
     display: flex;
     width: 100%;
+    
 }
 main 
 {
@@ -99,21 +167,44 @@ article
     display: flex;
     width:40%;
     flex-direction: column;
-    background-color: brown;
-    border: solid black 2px;
+    border: solid black 15px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background: url("img/texture-paper.png");
+    background-color: #5b3c28;
+    background-size: 280px 280px;
+}
+.productpagectn label
+{
+    font-weight: bold;
 }
 .productpage .articlectn-buyctn
 {
     display: flex;
     width:40%;
     flex-direction: column;
-    background-color: burlywood;
-    border: solid black 2px;
+    border: solid black 15px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background: url("img/texture-paper.png");
+    background-color: #5b3c28;
+    background-size: 280px 280px;
 }
 h2, h3 
 {
     text-align: center;
 }
+.productpage .articlectn-buyctn label
+{
+    font-weight: bold;
+}
+
 .productpage .articlectn-header1,.productpage .articlectn-header2
 {
     display: flex;
@@ -121,6 +212,7 @@ h2, h3
     align-items: center;
     text-align: center;
     width:100%;
+    margin-bottom: 1rem;
 
 }
 .productpage .articlectn-header2 
@@ -142,6 +234,9 @@ h2, h3
 {
     display: flex;
     width: 80%;
+    border: solid black 8px;
+    border-radius: 30px;
+    box-sizing: border-box;
 }
 .productpage .articlectn-main2
 {
@@ -152,13 +247,24 @@ h2, h3
     display: flex;
     justify-content: center;
     align-items: center;
-    width:100%;
+    width:60%;
+}
+.productpage .articlectn-footer1
+{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border: solid black 3px;
+    box-sizing: border-box;
+    background: url("img/lines-h2-bg.png");
+    background-color: rgb(240, 211, 171);
+    background-size: 280px 280px;
 }
 .productpage .articlectn-footer2 
 {
     margin-top: 3rem;
 }
-.productpage .otherproduct
+.productpage-otherproduct, .basketpage-otherproduct
 {
     display: flex;
     width: 100%;
@@ -166,29 +272,57 @@ h2, h3
     justify-content: center;
     align-items: center;
     margin-top: 5rem;
-    
+    border: solid black 10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;  
+    box-sizing: border-box;
+    background: url("img/texture-paper.png");
+    background-color: #5b3c28;
+    background-size: 280px 280px;
+} 
+.productpage-otherproduct p, .basketpage-otherproduct p
+{
+font-weight: bold;
+margin-bottom: 0rem;
+margin-top: 0.5rem;
 }
-.productpage .otherproduct-selection
+.productpage-otherproduct .asidectn img, .basketpage-otherproduct .asidectn img
+{
+    border: solid black 5px;
+    border-radius: 30px;  
+}
+.productpage-otherproduct-selection, .basketpage-otherproduct-selection
 {
     width:100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-.productpage .otherproduct-selection .asidectn
+.productpage-otherproduct-selection .asidectn,  .basketpage-otherproduct .asidectn
 {
     display: flex;
     width: 20%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: bisque;
-    border: solid black 1px;
-    
+    border: solid black 10px;
+    background-color: rgb(240, 211, 171);
+    border-radius: 25%;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+.basketpage-otherproduct .asidectn
+{
+    width:17%;
+}
+.productpage-otherproduct-selection .asidectn h4
+{
+    margin-bottom: 0.5rem;
 }
 .asidectn img
 {
-    width:80%;
+    width:40%;
+    margin-bottom: 1rem;
 }
 .mainpage 
 {
@@ -209,8 +343,14 @@ h2, h3
 {
  display:flex;
  width: 40%;
- border: solid black 4px;
  margin-top: 3rem;
+ border: solid black 15px;
+ background-color: rgb(255, 255, 255);
+ border-radius: 20px;
+ box-sizing: border-box;
+ background-color: #5b3c28;
+ background-size: 280px 280px;
+ position: relative;
 }
 .mainpagectn a
 {
@@ -218,26 +358,54 @@ h2, h3
  width: 40%;
  border: solid black 4px;
  margin-top: 3rem;
+ box-sizing: border-box;
 
 }
 .mainpage .imgctn
 {
     display: flex;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
     width: 50%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+.sectionctn:after 
+{
+    background: url("img/texture-paper.png") top repeat rgba(0,0,0,0.1);
+    background-size: 280px 280px;
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
 }
 .mainpage .textctn
 {
     width:50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: justify;
 
 } 
+.mainpage .textctn p
+{
+    margin-right:1rem;
+    background: url("img/lines-h2-bg.png");
+    background-size: 280px 280px;
+}
 .mainpage .sectionctn img
 {
-    width: 100%;
-    border: solid black 4px;
+    width: 80%;
+    border: solid black 8px;
+    border-radius: 30px;
+    margin: 1rem;
+    box-sizing: border-box;
 }
 .select-quantity
 {
@@ -248,7 +416,6 @@ h2, h3
     display: flex;
     text-align: center;
     width:100%;
-    background-color: rgba(231, 161, 149, 0.281);
     justify-content: space-around;
     flex-direction: row;
     flex-wrap: wrap;
@@ -259,6 +426,12 @@ h2, h3
     align-items: center;
     text-align: center;
     flex-direction: column;
+    border: solid black 20px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    background: url("img/texture-paper.png");
+    background-color: #5b3c28;
+    background-size: 280px 280px;
 }
 .basketpage-ctn
 {
@@ -310,6 +483,7 @@ footer .otherproduct-selection .asidectn
     align-items: center;
     background-color: bisque;
     border: solid black 1px;
+    box-sizing: border-box;
     
 }
 .listarticle
@@ -317,6 +491,7 @@ footer .otherproduct-selection .asidectn
     display: flex;
     width: 65%;
     border: black solid 2px;
+    box-sizing: border-box;
     
 }
 .quantityarticle
@@ -324,19 +499,26 @@ footer .otherproduct-selection .asidectn
     display: flex;
     width: 10%;
     border: black solid 2px;
+    box-sizing: border-box;
    }
 .pricearticle
 {
     display: flex;
     width: 20%;
     border: black solid 2px;
+    box-sizing: border-box;
 }
 .ordervalidation
 {
     display: flex;
     text-align: center;
     width:100%;
-    background-color: rgba(231, 161, 149, 0.281);
+    border: solid black 20px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    background: url("img/texture-paper.png");
+    background-color: #5b3c28;
+    background-size: 280px 280px;
     justify-content: space-around;
     flex-direction: row;
 }

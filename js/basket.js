@@ -18,6 +18,19 @@ return responsed.json()
             </div>
         </div>`;
         }
+
+    var obsJsonlocalstorage = [];
+    obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
+    if (!obsJsonlocalstorage == false )
+    {
+    var Numberofarticle = 0;
+    for (let i = 0; i < obsJsonlocalstorage.length; i++)
+{
+ Numberofarticle += parseInt(obsJsonlocalstorage[i].quantityarticle); 
+    }
+    console.log(Numberofarticle);
+    document.getElementById("basketnumber").innerHTML = Numberofarticle;
+    }
         
         
     let finalprice = 0;
