@@ -4,11 +4,27 @@ return responsed.json()
 } )
 .then(produit =>{
     var obsJsonlocalstorage = JSON.parse(localStorage.getItem('session'));
+    let addOptionArticle = '';
     for (var i = 0; i < obsJsonlocalstorage.length; i++) {
+
+        
+        for (var j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
+            addOptionArticle +=    `<div class="optionarticle">
+                                        <div class="listarticleoption">
+                                            <p>${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}</p>
+                                        </div>
+                                        <div class="quantityoptionarticle">
+                                            <p>${obsJsonlocalstorage[i].numberofoptionarticle[j].quantityoptionarticle}</p>
+                                        </div>
+                                        <button class="add"></button>
+                                        <button class="remove"></button>
+                                    </div>`;
+        };
         document.getElementById("articlebasketpage-ctn2").innerHTML += `
         <div>
             <div id="${obsJsonlocalstorage[i].namearticle}" class="listarticle">
                 <p>${obsJsonlocalstorage[i].namearticle}</p>
+               
             </div>
             <div id="${obsJsonlocalstorage[i].quantityarticle}" class="quantityarticle">
                 <p>${obsJsonlocalstorage[i].quantityarticle}</p>
@@ -16,8 +32,11 @@ return responsed.json()
             <div id="${obsJsonlocalstorage[i].pricearticle}" class="pricearticle">
                 <p>${obsJsonlocalstorage[i].pricearticle/1000}£</p>
             </div>
-        </div>`;
-        }
+        </div>
+        <div class="alloptionarticle">${addOptionArticle}</div>`
+        addOptionArticle = '';
+    }
+
 
     var obsJsonlocalstorage = [];
     obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
@@ -47,13 +66,6 @@ return responsed.json()
         <p>${finalprice/1000}£<p>
         </div>
     </div>`;
-
-    document.getElementById("name").addEventListener('input', function(e) {
-        var value = e.target.value;
-        function isValid(value) {
-            return /^[a-zA-Z]{0,16} [a-zA-Z]{0,16}$/.test(value);
-        }    
-    });
 
         
 
@@ -86,3 +98,10 @@ fetch("http://localhost:3000/api/furniture/")
     alert("hello");
     console.table(obs);
     obs.forEach(console.log(obs));*/
+
+    /*document.getElementById("name").addEventListener('input', function(e) {
+        var value = e.target.value;
+        function isValid(value) {
+            return /^[a-zA-Z]{0,16} [a-zA-Z]{0,16}$/.test(value);
+        }    
+    });*/

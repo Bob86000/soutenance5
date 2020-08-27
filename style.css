@@ -64,6 +64,25 @@ li .fas
     font-size: 4rem;
     color: black;
 }
+.basketpage .add
+{   
+    
+    width:37px;
+    height: 37px;
+    background: url("img/plus2.jpg");
+    background-size: 32px;
+    border-radius: 100px;
+}
+.basketpage .remove
+{   
+    
+    width:37px;
+    height: 37px;
+    background: url("img/minus2.jpg");
+    background-size: 32px;
+    border-radius: 100px;
+}
+
 .dynamiqueli
 {
     display: flex;
@@ -451,8 +470,41 @@ margin-top: 0.5rem;
 {
  display: flex;
  width: 100%;
- margin-bottom: 2rem;
  justify-content: space-around;
+}
+.basketpage-ctn2 .alloptionarticle
+{
+    display:flex;
+    margin-left: 10%;
+    width:50%;
+    flex-direction: column;
+    border-left: solid black 7px;
+    border-right: solid black 7px;
+    box-sizing: border-box;
+    background: url("img/lines-h2-bg.png");
+    background-color: rgb(175, 185, 77);
+    background-size: 280px 280px;
+}
+.basketpage-ctn2 .alloptionarticle p
+{
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+.basketpage-ctn2 .listarticleoption
+{
+    display:flex;
+    width:50%;
+}
+.basketpage-ctn2 .quantityoptionarticle
+{
+    display:flex;
+    width:50%;
+}
+.basketpage-ctn2 .optionarticle
+{
+    display:flex;
+    width:100%;
+    align-items: center;
 }
 .formctn
 {
@@ -489,24 +541,41 @@ footer .otherproduct-selection .asidectn
 .listarticle
 {
     display: flex;
+    flex-direction: column;
     width: 65%;
-    border: black solid 2px;
+    border: black solid 7px;
     box-sizing: border-box;
-    
+    background: url("img/texture-paper.png");
+    background-color: rgb(98, 153, 7);
+    background-size: 280px 280px;
+    border-radius: 20px;
+    padding-bottom: 1rem;
 }
 .quantityarticle
 {
     display: flex;
     width: 10%;
-    border: black solid 2px;
+    border: black solid 7px;
     box-sizing: border-box;
+    background: url("img/texture-paper.png");
+    background-color: rgb(98, 153, 7);
+    background-size: 280px 280px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
    }
 .pricearticle
 {
     display: flex;
     width: 20%;
-    border: black solid 2px;
+    border: black solid 7px;
     box-sizing: border-box;
+    background: url("img/texture-paper.png");
+    background-color: rgb(98, 153, 7);
+    background-size: 280px 280px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
 }
 .ordervalidation
 {
