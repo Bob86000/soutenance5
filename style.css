@@ -82,6 +82,15 @@ li .fas
     background-size: 32px;
     border-radius: 100px;
 }
+.basketpage .delete
+{  
+     width:37px;
+    height: 37px;
+    background: url("img/delete2.jpg");
+    background-size: 32px;
+    border-radius: 100px;
+}
+
 
 .dynamiqueli
 {
@@ -480,10 +489,13 @@ margin-top: 0.5rem;
     flex-direction: column;
     border-left: solid black 7px;
     border-right: solid black 7px;
+    border-bottom: solid black 7px;
     box-sizing: border-box;
     background: url("img/lines-h2-bg.png");
     background-color: rgb(175, 185, 77);
     background-size: 280px 280px;
+    margin-bottom: 2rem;
+    border-radius: 0 0 20px 20px;
 }
 .basketpage-ctn2 .alloptionarticle p
 {
@@ -498,7 +510,7 @@ margin-top: 0.5rem;
 .basketpage-ctn2 .quantityoptionarticle
 {
     display:flex;
-    width:50%;
+    width:30%;
 }
 .basketpage-ctn2 .optionarticle
 {

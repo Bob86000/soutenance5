@@ -52,11 +52,13 @@ fetch("http://localhost:3000/api/furniture/"+urlParams.get('id'))
         </div>`;
 
  
-
+/*ne pas utiliser inner.html += dans une boucle mettre une variable pour concatener et recupéré le string via element.html*/
+let varnishProduit ='';
 for (let j = 0; j < produit.varnish.length; j++) {
-document.getElementById("vernis").innerHTML += `
+    varnishProduit += `
 <option id="${produit.varnish[j]}" class="varnishclass" value="${produit.varnish[j]}">${produit.varnish[j]}</option>`;
 }
+document.getElementById("vernis").innerHTML = varnishProduit;
 
 let  varnishchoice = document.getElementById("vernis");
 varnishchoice.addEventListener('change', function(e)
@@ -193,8 +195,6 @@ document.getElementById("number").addEventListener('change', function(e)
                 
                 }}
             }
-
-
                         obsJsonlocalstorage = JSON.parse(localStorage.getItem('session'));
                         var Numberofarticle = 0;
                         for (let i = 0; i < obsJsonlocalstorage.length; i++){
@@ -202,46 +202,8 @@ document.getElementById("number").addEventListener('change', function(e)
                         }
                         console.log(Numberofarticle);
                         document.getElementById("basketnumber").innerHTML = Numberofarticle;
-
-
         })
-                     
-
-                
-
-
-
-
-            
-
-
-           /* var  modifyValueSendToStorage =
-                    {
-                    achat :
-                    {
-                        namearticle : obsJsonlocalstorage.namearticle,
-                        numberofoptionarticle : {
-                            optionarticle : obsJsonlocalstorage.numberofoptionarticle.optionarticle,
-                            quantityoptionarticle : obsJsonlocalstorage.numberofoptionarticle.quantityoptionarticle + valueSendToStorage.numberofoptionarticle.quantityoptionarticle
-                        },
-                        pricearticle : obsJsonlocalstorage.price + valueSendToStorage.price, 
-                        quantityarticle : obsJsonlocalstorage.quantityarticle + valueSendToStorage.quantityarticle
-                    }}
-
-                    console.table(modifyValueSendToStorage);*/
             }
-            /*
-            parcourir le tableau de l'objet storage , et en fonction des cas placer le localStorage.setItem avec la variable modifié ou pas
-            
-            
-            verifier que getitem renvoie quelque cvhose sinon faire un tableau
-             ensuite on peut pusher un objet literale 
-             ensuite poser les set DataTransferItem, et faire attention a l'array de class name qui renvoie pas fvraiment un tableau
-
-             e.target.value
-
-             l'affichage d'abord les fonctions qu'on appele et ensuite les fonctions déclarative.(retirer l'id et faire un autre fetch)*/
-
             })
 
 fetch("http://localhost:3000/api/furniture/")
@@ -250,11 +212,15 @@ fetch("http://localhost:3000/api/furniture/")
 } )
 .then(produitfooter =>{
     console.table(produitfooter);
+    let produitFooter = '';
     for (var i = 0; i < produitfooter.length; i++){
 if (urlParams.get('id') !== produitfooter[i]._id) {
-            document.getElementById("otherproduct-selection").innerHTML +=`
+            produitFooter +=`
                 <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn"> 
                     <h4> ${produitfooter[i].name}</h4> 
                     <img src="${produitfooter[i].imageUrl}" />
                 </a>`;}
-        };});
+        }
+        document.getElementById("otherproduct-selection").innerHTML = produitFooter;
+        
+        ;});

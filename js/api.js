@@ -5,9 +5,9 @@ return responsed.json()
 } )
 .then( home => {
 console.log(home);
-
+let responseElement ='';
 home.forEach(elements => {
- document.getElementById("sectionid").innerHTML += 
+    responseElement += 
     `<a class="sectionctn" href="produit.html?id=${elements._id}">
         <div class="imgctn">
             <img  src="${elements.imageUrl}" />
@@ -17,6 +17,10 @@ home.forEach(elements => {
             <p>${elements.description}</p>
         </div>
         </a>`; 
+    document.getElementById("sectionid").innerHTML= responseElement;
+
+
+
  });
 
 var obsJsonlocalstorage = [];
