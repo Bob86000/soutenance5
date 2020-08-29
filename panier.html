@@ -46,55 +46,63 @@
                     <div class="DYNAMINK_DIV" ></div>
 
                 </div>
-                <form id="formemail" class="formctn">
+                <form class="formctn">
+                    <div id="formctn__firstname" class="formctn__firstname labelctn">
+                        <label for="form__firstname">Prenom</label>
+                    </div>
+                    <div id="formctn__firstnameinput" class="formctn__firstnameinput">
+                        <input type="text" name="form__firstname"  id="form__firstname" maxlength="30">
+                    </div>
+                    <div id="formctn__name" class="formctn__name labelctn" >
+                        <label for="form__name">Nom</label>
+                    </div>
+                    <div id="formctn__nameinput" class="formctn__nameinput ">
+                        <input type="text" name="form__name" id="form__name"  maxlength="40">
+                    </div>
+                    <div id="formctn__address" class="formctn__address labelctn">
+                        <label for="form__address">Adresse</label>
+                    </div>
+                    <div id="formctn__addressinput" class="formctn__addressinput">
+                        <input type="text" name="form__address" id="form__address"  maxlength="50" placeholder="Adresse postale">
+                    </div>
+                    <div id="formctn__city" class="formctn__city labelctn">
+                        <label for="form__city">Ville</label>
+                    </div>
+                    <div id="formctn__cityinput" class="formctn__cityinput">
+                        <input type="text" name="form__city" id="form__city"  maxlength="40"> 
+                    </div>
+                    <div id="formctn__email" class="formctn__email labelctn">
+                        <label for="form__email">Email</label>
+                    </div>
+                    <div id="formctn__emailinput" class="formctn__emailinput">
+                        <input type="text" name="form__email" id="form__email"  maxlength="40">
+                    </div>
+                </form>
+                <!--<form class="formctn">
                     <div class="nameform">
                         <label for="nameform">Prenom : </label>
-                        <input type="text" name="nameform" id="nameform" required pattern="[a-zA-Z]{4,16} [a-zA-Z]{4,16}" placeholder="ex:Oscar Develoupay">
+                        <input type="text" name="nameform" id="nameform" required pattern="[a-zA-Z]{4,16} [a-zA-Z]{4,16}" >
                       </div>
+                      <div></div>
                       <div class="shippingaddress">
                         <label for="shippingaddress">Nom : </label>
-                        <input type="text" name="shippingaddress" id="shippingaddress" required pattern="[0-9]{1,4} [a-zA-Z\s0-9]{1,45}" placeholder="ex:17 rue plambert 47500 Brest">
+                        <input type="text" name="shippingaddress" id="shippingaddress" required pattern="[0-9]{1,4} [a-zA-Z\s0-9]{1,45}" >
                       </div>
                       <div class="paymentaddress">
                         <label for="paymentaddress">Adresse : </label>
-                        <input type="text" name="paymentaddress" id="paymentaddress" required pattern="[0-9]{1,4} [a-zA-Z\s0-9]{1,45}" placeholder="ex:17 rue plambert 47500 Brest">
+                        <input type="text" name="paymentaddress" id="paymentaddress" required pattern="[0-9]{1,4} [a-zA-Z\s0-9]{1,45}" >
                       </div>
                       <div class="telephonenumber">
                         <label for="telephonenumber">Ville : </label>
-                        <input type="text" name="telephonenumber" id="telephonenumber" required pattern="[0-9]{1,16}" placeholder="ex:0101010101">
+                        <input type="text" name="telephonenumber" id="telephonenumber" required pattern="[0-9]{1,16}" >
                       </div>
                       <div class="telephonenumber">
-                        <label  for="email">Email : <input type="text" name="telephonenumber" id="email" required pattern="[0-9]{1,16}" placeholder="ex:0101010101">
+                        <label id="formemail" for="email">Email :<input type="text" name="telephonenumber" id="email" required pattern="[0-9]{1,16}" >
                         </label>
                       </div>
                 </form>
-                <!--<form class="paymentform">
-                    <div>
-                        <label for="paymentselected">Votre moyen de paiement</label>: 
-                        <select id="paymentselected">
-                            <option>VISA </option>
-                            <option>MASTERCARD</option>
-                            <option>ELECTRON</option>
-                        </select>
-                    </div>
-                    <div>
-                    <label for="cardnumber">Numero de carte</label>:
-                    <input type="password" id="cardnumber" name="cardnumber"
-                        minlength="16" maxlength="16" size="16" required pattern="[0-9]{16}" placeholder="00001111000" />
-                    </div>
-                    <div>
-                    <label> Date d'expiration de la carte
-                        <input type="text"  name="cardexpirationdate" required pattern="[0]{1}[1-9]{1}|[10-12]{2}" placeholder="Mois ex:06"/>
-                    </label>
-                    
-                    <label ><input type="text" name="cardexpirationdate" required
-                    pattern="[2]{1}[0]{1}[2-3]{1}[0-9]{1}" placeholder="Années ex:2020" /> </label>
-                    </div>
                     
                 </form>-->
-                <div>
-                    <p> Recapitulatif des informations</p>
-                </div>
                </article>
 
                 <article id="basketpage-ctn2" class="basketpage-ctn2">

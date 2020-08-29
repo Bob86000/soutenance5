@@ -69,7 +69,7 @@ return responsed.json()
     document.getElementById("ordervalidation").innerHTML = `
     <div class="finalconfirmationctn">
         <div class="finalconfirmation">
-            <a href="validation.html" ><p>Passez la commande</p></a> 
+            <a id="finalconfirmation" href="validation.html" ><p>Passez la commande</p></a> 
         </div> 
         <div class="finalpricectn"> 
         <p>Montant total</p> 
@@ -287,17 +287,79 @@ return responsed.json()
                  document.getElementById("finalPrice").innerHTML = `${finalPrice/1000}£`;
             })}
 
-            document.getElementById("email").addEventListener('change', function(e) {
-                let email = e.target.value;
-                
-                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(email)) {
-                    alert(RegExp.$1);
+
+            document.getElementById("finalconfirmation").addEventListener('change', function(e) 
+            {
+                contact =
+                {
+                 firstname : document.getElementById("form__firstname").value,
+                 name : document.getElementById("form__name").value,
+                 address : document.getElementById("form__address").value,
+                 city : document.getElementById("form__city").value,
+                 email : document.getElementById("form__email").value
+                };
+                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(contact.firstname)) {
+                    let checkfirstname = true;
                 } else {
                     e.preventDefault();
-                    document.getElementById("formemail").reset();
                     alert("pas ok");
+                    e.target.value='';
+                    e.target.focus();
                 }
-                });
+                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(contact.name)) {
+                    let checkname = true;
+                } else {
+                    e.preventDefault();
+                    alert("pas ok");
+                    e.target.value='';
+                    e.target.focus();
+                }
+                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(contact.address)) {
+                    let checkaddress = true;
+                } else {
+                    e.preventDefault();
+                    alert("pas ok");
+                    e.target.value='';
+                    e.target.focus();
+                }
+                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(contact.city)) {
+                    let checkcity = true;
+                } else {
+                    e.preventDefault();
+                    alert("pas ok");
+                    e.target.value='';
+                    e.target.focus();
+                }
+                
+                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(contact.email)) {
+                    let checkemail = true;
+                    ne pas oublier la veirfication string des valeurs de propriété
+                } else {
+                    e.preventDefault();
+                    alert("pas ok");
+                    e.target.value='';
+                    e.target.focus();
+                }
+                if ( verifier que le panier contient minimum un produit) {
+                    let checkproduct = true;
+                } else {
+                    e.preventDefault();
+                    alert("pas ok");
+                    e.target.value='';
+                    e.target.focus();
+                }
+
+                if ( checkfirstname && checkname && checkaddress && checkcity && checkemail && checkproducts)
+                {
+                    let products = [];
+                for (let i = 0; i < obsJsonlocalstorage.length; i++) 
+                {
+                    let nameproducts = '';
+                    nameproducts += obsJsonlocalstorage[i].namearticle
+                    products.push(nameproducts);
+                }
+
+                }
 })
 
 fetch("http://localhost:3000/api/furniture/")

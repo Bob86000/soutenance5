@@ -527,6 +527,7 @@ margin-top: 0.5rem;
     text-align: center;
     width:100%;
     flex-direction: column;
+    padding-bottom: 2rem;
 }
 footer
 {
@@ -676,4 +677,12 @@ padding-bottom:1rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     padding: 1rem;
+}
+.labelctn
+{
+    margin-top: 1rem;
+}
+.labelctn label
+{
+    font-weight: bold;
 }
