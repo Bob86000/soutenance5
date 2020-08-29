@@ -17,9 +17,9 @@ return responsed.json()
                                         <div id="quantity${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="quantityoptionarticle">
                                             <p>${obsJsonlocalstorage[i].numberofoptionarticle[j].quantityoptionarticle}</p>
                                         </div>
-                                        <button id="${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="add"></button>
-                                        <button id="${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="remove"></button>
-                                        <button id="${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="delete"></button>
+                                        <button id="add${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="add"></button>
+                                        <button id="remove${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="remove"></button>
+                                        <button id="delete${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="delete"></button>
                                     </div>`;
         };
         addArticle += `
@@ -67,11 +67,13 @@ return responsed.json()
     console.log(finalPrice);
 
     document.getElementById("ordervalidation").innerHTML = `
-    <div class="finalconfirmationctn"> 
-        <p> <a href="validation.html" >Passez la commande</a> </p>
+    <div class="finalconfirmationctn">
+        <div class="finalconfirmation">
+            <a href="validation.html" ><p>Passez la commande</p></a> 
+        </div> 
         <div class="finalpricectn"> 
         <p>Montant total</p> 
-        <p id="finalPrice" >${finalPrice/1000}£<p>
+        <p id="finalPrice" >${finalPrice/1000}£</p>
         </div>
     </div>`;
 
@@ -88,6 +90,10 @@ return responsed.json()
             p.addEventListener('click', function(e)
             {   
                 let getDomId = e.currentTarget.id;
+                console.log(getDomId);
+                getDomId = getDomId.slice(3);
+                console.log(getDomId);
+
                 console.table(obsJsonlocalstorage);
                 console.table(getDomId);
                 for (let j = 0; j < obsJsonlocalstorage.length; j++) 
@@ -101,9 +107,9 @@ return responsed.json()
                             obsJsonlocalstorage[j].quantityarticle++;
                             
                             localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
-                            document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle+obsJsonlocalstorage[j].numberofoptionarticle[k].optionarticle).innerHTML = obsJsonlocalstorage[j].numberofoptionarticle[k].quantityoptionarticle;
-                            document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle).innerHTML = obsJsonlocalstorage[j].quantityarticle;
-                            document.getElementById("price"+obsJsonlocalstorage[j].namearticle).innerHTML = obsJsonlocalstorage[j].pricearticle/1000;
+                            document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle+obsJsonlocalstorage[j].numberofoptionarticle[k].optionarticle).innerHTML = "<p>"+obsJsonlocalstorage[j].numberofoptionarticle[k].quantityoptionarticle+"</p>";
+                            document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle).innerHTML = "<p>"+obsJsonlocalstorage[j].quantityarticle+"</p>";
+                            document.getElementById("price"+obsJsonlocalstorage[j].namearticle).innerHTML = "<p>"+obsJsonlocalstorage[j].pricearticle/1000+"£<p>";
                             console.log(obsJsonlocalstorage[j].numberofoptionarticle[k].quantityoptionarticle);
                             break;
                         }
@@ -132,6 +138,10 @@ return responsed.json()
          p.addEventListener('click', function(e)
             {   
                 let getDomId = e.currentTarget.id;
+                console.log(getDomId);
+                getDomId = getDomId.slice(6);
+                console.log(getDomId);
+
                 console.table(obsJsonlocalstorage);
                 console.table(getDomId);
                 for (let j = 0; j < obsJsonlocalstorage.length; j++) 
@@ -154,8 +164,8 @@ return responsed.json()
 
                         let elementRemove = document.getElementById("optionarticle"+obsJsonlocalstorage[j].namearticle+obsJsonlocalstorage[j].numberofoptionarticle[k].optionarticle);
                         let parentOfElementRemove = document.getElementById("alloptionarticle"+obsJsonlocalstorage[j].namearticle);
-                        document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle).innerHTML = obsJsonlocalstorage[j].quantityarticle;
-                        document.getElementById("price"+obsJsonlocalstorage[j].namearticle).innerHTML = obsJsonlocalstorage[j].pricearticle/1000;
+                        document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle).innerHTML = "<p>"+obsJsonlocalstorage[j].quantityarticle+"</p>";
+                        document.getElementById("price"+obsJsonlocalstorage[j].namearticle).innerHTML = "<p>"+obsJsonlocalstorage[j].pricearticle/1000+"£</p>";
                         parentOfElementRemove.removeChild(elementRemove);
                         let indextoDeleteOption = obsJsonlocalstorage[j].numberofoptionarticle.map( e => e.optionarticle).indexOf(obsJsonlocalstorage[j].numberofoptionarticle[k].optionarticle);
                         console.table(obsJsonlocalstorage[j].numberofoptionarticle);
@@ -186,9 +196,9 @@ return responsed.json()
                         }
                         else if (obsJsonlocalstorage[j].numberofoptionarticle[k].quantityoptionarticle > 0) 
                         {
-                        document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle+obsJsonlocalstorage[j].numberofoptionarticle[k].optionarticle).innerHTML = obsJsonlocalstorage[j].numberofoptionarticle[k].quantityoptionarticle;
-                        document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle).innerHTML = obsJsonlocalstorage[j].quantityarticle;
-                        document.getElementById("price"+obsJsonlocalstorage[j].namearticle).innerHTML = obsJsonlocalstorage[j].pricearticle/1000;
+                        document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle+obsJsonlocalstorage[j].numberofoptionarticle[k].optionarticle).innerHTML = "<p>"+obsJsonlocalstorage[j].numberofoptionarticle[k].quantityoptionarticle+"</p>";
+                        document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle).innerHTML = "<p>"+obsJsonlocalstorage[j].quantityarticle+"</p>";
+                        document.getElementById("price"+obsJsonlocalstorage[j].namearticle).innerHTML = "<p>"+obsJsonlocalstorage[j].pricearticle/1000+"£</p>";
                         console.log(obsJsonlocalstorage[j].numberofoptionarticle[k].quantityoptionarticle);
                         break;
                         }
@@ -220,8 +230,10 @@ return responsed.json()
             p.addEventListener('click', function(e)
             {   
                 let getDomId = e.currentTarget.id;
+                console.log(getDomId);
+                getDomId = getDomId.slice(6);
+                console.log(getDomId);
                 console.table(obsJsonlocalstorage);
-                console.table(getDomId);
                 for (let j = 0; j < obsJsonlocalstorage.length; j++) 
                 {
                      for (let k = 0; k < obsJsonlocalstorage[j].numberofoptionarticle.length; k++)  {
@@ -237,8 +249,8 @@ return responsed.json()
                             obsJsonlocalstorage[j].pricearticle -= newprice;
                             obsJsonlocalstorage[j].quantityarticle -= obsJsonlocalstorage[j].numberofoptionarticle[k].quantityoptionarticle;
                             obsJsonlocalstorage[j].numberofoptionarticle[k].quantityoptionarticle = 0;
-                            document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle).innerHTML = obsJsonlocalstorage[j].quantityarticle;
-                            document.getElementById("price"+obsJsonlocalstorage[j].namearticle).innerHTML = obsJsonlocalstorage[j].pricearticle/1000;
+                            document.getElementById("quantity"+obsJsonlocalstorage[j].namearticle).innerHTML = "<p>"+obsJsonlocalstorage[j].quantityarticle+"</p>";
+                            document.getElementById("price"+obsJsonlocalstorage[j].namearticle).innerHTML = "<p>"+obsJsonlocalstorage[j].pricearticle/1000+"£</p>";
                             let indextoDeleteOption = obsJsonlocalstorage[j].numberofoptionarticle.map( e => e.optionarticle).indexOf(obsJsonlocalstorage[j].numberofoptionarticle[k].optionarticle);
                             obsJsonlocalstorage[j].numberofoptionarticle.splice(indextoDeleteOption, 1);
                             localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
@@ -274,6 +286,18 @@ return responsed.json()
                  document.getElementById("basketnumber").innerHTML = numberOfArticle;
                  document.getElementById("finalPrice").innerHTML = `${finalPrice/1000}£`;
             })}
+
+            document.getElementById("email").addEventListener('change', function(e) {
+                let email = e.target.value;
+                
+                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(email)) {
+                    alert(RegExp.$1);
+                } else {
+                    e.preventDefault();
+                    document.getElementById("formemail").reset();
+                    alert("pas ok");
+                }
+                });
 })
 
 fetch("http://localhost:3000/api/furniture/")
@@ -300,3 +324,17 @@ fetch("http://localhost:3000/api/furniture/")
             return /^[a-zA-Z]{0,16} [a-zA-Z]{0,16}$/.test(value);
         }    
     });*/
+
+    /**
+ *
+ * Expects request to contain:
+ * contact: {
+ *   firstName: string,
+ *   lastName: string,
+ *   address: string,
+ *   city: string,
+ *   email: string
+ * }
+ * products: [string] <-- array of product _id
+ *
+ */

@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/79bdb3d914.js" crossorigin="anonymous"></script>
     <script src="js/basket.js"></script>
     <title></title>
-<head>
+</head>
 <body>
     <div class="main_wrapper">
         <header>
@@ -46,35 +46,32 @@
                     <div class="DYNAMINK_DIV" ></div>
 
                 </div>
-                <form class="formctn">
+                <form id="formemail" class="formctn">
                     <div class="nameform">
-                        <label for="nameform">Votre nom:</label>
+                        <label for="nameform">Prenom : </label>
                         <input type="text" name="nameform" id="nameform" required pattern="[a-zA-Z]{4,16} [a-zA-Z]{4,16}" placeholder="ex:Oscar Develoupay">
                       </div>
                       <div class="shippingaddress">
-                        <label for="shippingaddress"></label>Adresse de livraison:</label>
+                        <label for="shippingaddress">Nom : </label>
                         <input type="text" name="shippingaddress" id="shippingaddress" required pattern="[0-9]{1,4} [a-zA-Z\s0-9]{1,45}" placeholder="ex:17 rue plambert 47500 Brest">
                       </div>
                       <div class="paymentaddress">
-                        <label for="paymentaddress"></label>Adresse de facturation:</label>
+                        <label for="paymentaddress">Adresse : </label>
                         <input type="text" name="paymentaddress" id="paymentaddress" required pattern="[0-9]{1,4} [a-zA-Z\s0-9]{1,45}" placeholder="ex:17 rue plambert 47500 Brest">
                       </div>
                       <div class="telephonenumber">
-                        <label for="telephonenumber"></label>Votre numéro de téléphone:</label>
+                        <label for="telephonenumber">Ville : </label>
                         <input type="text" name="telephonenumber" id="telephonenumber" required pattern="[0-9]{1,16}" placeholder="ex:0101010101">
                       </div>
-                      <div class="form-example">
-                        <label for="email"></label>Moyen de livraison:</label>
-                        <select id="list">
-                            <option>A votre adresse </option>
-                            <option>En point relais</option>
-                        </select>
+                      <div class="telephonenumber">
+                        <label  for="email">Email : <input type="text" name="telephonenumber" id="email" required pattern="[0-9]{1,16}" placeholder="ex:0101010101">
+                        </label>
                       </div>
                 </form>
-                <form class="paymentform">
+                <!--<form class="paymentform">
                     <div>
                         <label for="paymentselected">Votre moyen de paiement</label>: 
-                        <select id="list">
+                        <select id="paymentselected">
                             <option>VISA </option>
                             <option>MASTERCARD</option>
                             <option>ELECTRON</option>
@@ -82,17 +79,19 @@
                     </div>
                     <div>
                     <label for="cardnumber">Numero de carte</label>:
-                    <input type="password" id="cardnumber" name="cardnumber" required
+                    <input type="password" id="cardnumber" name="cardnumber"
                         minlength="16" maxlength="16" size="16" required pattern="[0-9]{16}" placeholder="00001111000" />
                     </div>
                     <div>
-                    <label for="cardexpirationdate">Date d'expiration de la carte</label>
-                    <input type="text" id="cardexpirationdatemonth" name="cardexpirationdate" required pattern="[0]{1}[1-9]{1}|[10-12]{2}" placeholder="Mois ex:06"/>
-                    <input type="text" id="cardexpirationdateyear" name="cardexpirationdate" required
-                    pattern="[2]{1}[0]{1}[2-3]{1}[0-9]{1}" placeholder="Années ex:2020" />
+                    <label> Date d'expiration de la carte
+                        <input type="text"  name="cardexpirationdate" required pattern="[0]{1}[1-9]{1}|[10-12]{2}" placeholder="Mois ex:06"/>
+                    </label>
+                    
+                    <label ><input type="text" name="cardexpirationdate" required
+                    pattern="[2]{1}[0]{1}[2-3]{1}[0-9]{1}" placeholder="Années ex:2020" /> </label>
                     </div>
                     
-                </form>
+                </form>-->
                 <div>
                     <p> Recapitulatif des informations</p>
                 </div>

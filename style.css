@@ -148,7 +148,8 @@ header
 a
 {
     text-decoration: none;
-    color: black
+    color: black;
+    display: flex;
 }
 .logo 
 {
@@ -454,7 +455,7 @@ margin-top: 0.5rem;
     align-items: center;
     text-align: center;
     flex-direction: column;
-    border: solid black 20px;
+    border: solid black 15px;
     border-radius: 30px;
     box-sizing: border-box;
     background: url("img/texture-paper.png");
@@ -522,7 +523,7 @@ margin-top: 0.5rem;
 {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     text-align: center;
     width:100%;
     flex-direction: column;
@@ -594,7 +595,7 @@ footer .otherproduct-selection .asidectn
     display: flex;
     text-align: center;
     width:100%;
-    border: solid black 20px;
+    border: solid black 10px;
     border-radius: 30px;
     box-sizing: border-box;
     background: url("img/texture-paper.png");
@@ -607,15 +608,72 @@ footer .otherproduct-selection .asidectn
 { 
     display:flex;
     width:100%;
+    justify-content: space-around;
+    position: relative;
+    padding-top:4rem;
 }
-.ordervalidation div p
+.finalconfirmation
 {
- display:flex;
- width: 70%;
- justify-content: space-around;
+display:flex;
+width: 40%;
+position : absolute;
+left: 10%;
+top: -36px;
+border: black solid 15px;
+box-sizing: border-box;
+background: url("img/texture-paper.png");
+background-color: rgb(98, 153, 7);
+background-size: 280px 280px;
+justify-content: center;
+align-items: center;   
+border-radius: 30px;
 }
+.finalconfirmation a
+{
+display: flex;
+width: 100%;
+justify-content: center;
+padding-top: 2rem;
+padding-bottom:2rem;
+}
+.finalconfirmation p
+{
+    text-align: center;
+}
+
 .finalpricectn
 {
-    display:flex;
-    width: 28%;
+display:flex;
+width: 28%;
+justify-content: space-around;
+align-items: center;
+box-sizing: content-box;
+position: absolute;
+top: -43px;
+right: 10%;
+border: black solid 15px;
+background: url("img/texture-paper.png");
+background-color: rgb(98, 153, 7);
+background-size: 280px 280px;
+border-radius: 30px;
+padding-top: 1rem;
+padding-bottom:1rem;
+}
+.finalconfirmation p
+{ 
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.finalpricectn p
+{
+    border: black solid 7px;
+    box-sizing: border-box;
+    background: url("img/lines-h2-bg.png");
+    background-color:  rgb(175, 185, 77);
+    background-size: 280px 280px;
+    border-radius: 20px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
 }
