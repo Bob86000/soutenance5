@@ -126,13 +126,13 @@ document.getElementById("number").addEventListener('change', function(e)
                     {
                         console.log( "L'article selectionné n'existe pas dans le panier? "+ (!obsJsonlocalstorage.find(articleExists => articleExists.namearticle == valueSendToStorage.namearticle )));
                         for (let i = 0; i < obsJsonlocalstorage.length; i++){
-                        let lengthBeforepush = i;}
+                        var lengthBeforepush = i;}
                         
                         obsJsonlocalstorage.push(valueSendToStorage);
                         localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
 
                         for (let j = 0; j < obsJsonlocalstorage.length; j++){
-                        let lengthafterpush = j;}
+                        var lengthafterpush = j;}
 
                         console.log("Il y avait déjà un article dans le panier et un article différent est ajouté? " +( lengthBeforepush < lengthafterpush) )
                         console.table(obsJsonlocalstorage);

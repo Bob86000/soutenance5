@@ -1,8 +1,6 @@
 
 let insa = fetch("http://localhost:3000/api/furniture")
-.then( responsed => {
-return responsed.json()
-} )
+.then( res => res.json())
 .then( home => {
 console.log(home);
 let responseElement ='';

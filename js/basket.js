@@ -1,28 +1,42 @@
-fetch("http://localhost:3000/api/furniture/")
-.then( responsed => {
-return responsed.json()
-} )
-.then(produit =>{
-    let obsJsonlocalstorage = [];
-    obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
+/* Ce fetch a été rajouté a la toute derniere minute pour recupéré les ID qui n'avait pas été stocker*/
+let insa = fetch("http://localhost:3000/api/furniture")
+.then( res => res.json())
+.then( home => {
+console.log(home);
+let responseElement = [];
+localStorage.setItem("requiredtosendserver", JSON.stringify(responseElement));
+home.forEach(elements => { 
+    let addindex= {
+        itemname : elements.name,
+        itemid : elements._id
+    }
+        responseElement.push(addindex)})
 
-    let addOptionArticle = '';
-    let addArticle ='';
-    for (let i = 0; i < obsJsonlocalstorage.length; i++) {
+        localStorage.setItem("requiredtosendserver", JSON.stringify(responseElement));
+
+    }
+    )
+
+let obsJsonlocalstorage = [];
+obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
+
+let addOptionArticle = '';
+let addArticle = '';
+for (let i = 0; i < obsJsonlocalstorage.length; i++) {
 
         
-        for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
-            addOptionArticle +=    `<div id="optionarticle${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="optionarticle">
-                                        <div id="name${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="listarticleoption">
-                                            <p>${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}</p>
-                                        </div>
-                                        <div id="quantity${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="quantityoptionarticle">
-                                            <p>${obsJsonlocalstorage[i].numberofoptionarticle[j].quantityoptionarticle}</p>
-                                        </div>
-                                        <button id="add${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="add"></button>
-                                        <button id="remove${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="remove"></button>
-                                        <button id="delete${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="delete"></button>
-                                    </div>`;
+for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
+    addOptionArticle +=    `<div id="optionarticle${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="optionarticle">
+                            <div id="name${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="listarticleoption">
+                            <p>${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}</p>
+                            </div>
+                            <div id="quantity${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="quantityoptionarticle">
+                            <p>${obsJsonlocalstorage[i].numberofoptionarticle[j].quantityoptionarticle}</p>
+                            </div>
+                            <button id="add${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="add"></button>
+                            <button id="remove${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="remove"></button>
+                            <button id="delete${obsJsonlocalstorage[i].namearticle}${obsJsonlocalstorage[i].numberofoptionarticle[j].optionarticle}" class="delete"></button>
+                            </div>`;
         };
         addArticle += `
         <div id="ctn${obsJsonlocalstorage[i].namearticle}">
@@ -289,20 +303,22 @@ return responsed.json()
 
             document.getElementById("finalconfirmation").addEventListener('click', function(e) 
             {
-                contact =
+                let contact =
                 {
-                 firstname : document.getElementById("form__firstname").value,
-                 name : document.getElementById("form__name").value,
+                 firstName : document.getElementById("form__firstname").value,
+                 lastName : document.getElementById("form__name").value,
                  address : document.getElementById("form__address").value,
                  city : document.getElementById("form__city").value,
                  email : document.getElementById("form__email").value
                 };
+                let responseElement = JSON.parse(localStorage.getItem("requiredtosendserver"));
                 let checkfirstname = false;
                 let checkname = false;
                 let checkaddress = false;
                 let checkcity = false;
                 let checkemail = false;
                 let checkproducts = false;
+                e.preventDefault();
 
                 { function redalert (x,y) 
                     {
@@ -316,7 +332,7 @@ return responsed.json()
                     }
                 }
 
-                if (/^[a-zA-Z-]{2,} ?[a-zA-Z-]* ?[a-zA-Z-]*$/.test(contact.firstname) && typeof contact.firstname === "string") {
+                if (/^[a-zA-Z-]{2,} ?[a-zA-Z-]* ?[a-zA-Z-]*$/.test(contact.firstName) && typeof contact.firstName === "string") {
                     checkfirstname = true;
                     greenalert ("form__firstname");
                     console.log("le prenom est bon");
@@ -325,7 +341,7 @@ return responsed.json()
                     document.getElementById("form__firstname").value = "";
                     redalert ("form__firstname","Le prénom");
                 }
-                if (/^[a-zA-Z-]{2,} ?[a-zA-Z-]* ?[a-zA-Z-]*$/.test(contact.name) && (typeof contact.name === "string")) {
+                if (/^[a-zA-Z-]{2,} ?[a-zA-Z-]* ?[a-zA-Z-]*$/.test(contact.lastName) && (typeof contact.lastName === "string")) {
                     checkname = true;
                     greenalert ("form__name");
                     console.log("le nom est bon");
@@ -335,7 +351,7 @@ return responsed.json()
                     document.getElementById("form__name").value = "";
                     redalert ("form__name","Le nom");
                 }
-                if (/^[a-zA-Z0-9,._-]+ ?[a-zA-Z0-9,._-]* ?[a-zA-Z0-9,._-]*$/.test(contact.address) && (typeof contact.address === "string")) {
+                if (/^[a-zA-Z0-9,._-]+ ?[a-zA-Z0-9,._-]{2,} ?[a-zA-Z0-9,._-]*$/.test(contact.address) && (typeof contact.address === "string")) {
                     checkaddress = true;
                     greenalert ("form__address");
                     console.log("l'adresse est bonne");
@@ -345,7 +361,7 @@ return responsed.json()
                     document.getElementById("form__address").value = "";
                     redalert ("form__address","L'adresse");
                 }
-                if (/^[a-zA-Z. _-]+$/.test(contact.city) && (typeof contact.city === "string")) {
+                if (/^[a-zA-Z. _-]{2,}$/.test(contact.city) && (typeof contact.city === "string")) {
                     checkcity = true;
                     console.log("la ville est bonne");
                     greenalert ("form__city");
@@ -367,7 +383,7 @@ return responsed.json()
                     redalert ("form__email","L'email");
                 }
                 if (obsJsonlocalstorage && obsJsonlocalstorage.length > 0) {
-                    checkproduct = true;
+                    checkproducts = true;
                     console.log("le panier n'est pas vide");
                 } else {
                     e.preventDefault();
@@ -376,19 +392,36 @@ return responsed.json()
 
                 if ( checkfirstname && checkname && checkaddress && checkcity && checkemail && checkproducts)
                 {
+                    
                     let products = [];
                     e.preventDefault();
                 for (let i = 0; i < obsJsonlocalstorage.length; i++) 
                 {
-                    let nameproducts = '';
-                    nameproducts += obsJsonlocalstorage[i].namearticle;
-                    products.push(nameproducts);
+                    for (let j = 0; j < responseElement.length; j++){
+                        if ( responseElement[j].itemname == obsJsonlocalstorage[i].namearticle)
+                        {
+                            let finalproductsId = '';
+                            finalproductsId += responseElement[j].itemid;
+                            products.push(finalproductsId);
+                        }
                 }
-                 console.log(products);
                 }
-
-            });
-})
+                console.log(products);
+                fetch("http://localhost:3000/api/furniture/order", {
+                    method: 'POST',
+                    mode: "cors",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({contact,products
+                    })
+                }).then(res => {
+                    return res.json()})
+                .then(data => {
+                     console.log(data);
+                })
+                .catch(error => console.log('ERROR'));
+                }})
 
 fetch("http://localhost:3000/api/furniture/")
 .then( responsedfooter => {
@@ -407,6 +440,3 @@ fetch("http://localhost:3000/api/furniture/")
         document.getElementById("otherproduct-selection").innerHTML = produitFooter;
     
     });
-
-
- 
