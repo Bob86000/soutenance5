@@ -409,7 +409,6 @@ for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
                 console.log(products);
                 fetch("http://localhost:3000/api/furniture/order", {
                     method: 'POST',
-                    mode: "cors",
                     headers: {
                         'Content-Type': 'application/json'
                     },
