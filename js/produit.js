@@ -66,19 +66,19 @@ varnishchoice.addEventListener('change', function(e)
     document.getElementById("ajustvarnish").innerHTML= `Fournie avec le vernis ${e.currentTarget.value}`
 });
 
-var obsJsonlocalstorage = [];
+let obsJsonlocalstorage = [];
 obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
-if (!obsJsonlocalstorage == false )
+let Numberofarticle = 0;
+if (!obsJsonlocalstorage === false )
 {
-var Numberofarticle = 0;
+
 for (let i = 0; i < obsJsonlocalstorage.length; i++)
 {
  Numberofarticle += parseInt(obsJsonlocalstorage[i].quantityarticle); 
 }
 console.log(Numberofarticle);
-document.getElementById("basketnumber").innerHTML = Numberofarticle;
 }
-
+document.getElementById("basketnumber").innerHTML = Numberofarticle;
 let calculate = 
 {
     fullprice: function (y) 
@@ -91,7 +91,7 @@ document.getElementById("number").addEventListener('change', function(e)
 })
         
 
-     var addtocard = document.getElementsByClassName('addtocard'); 
+     let addtocard = document.getElementsByClassName('addtocard'); 
     for(let n=0; n<addtocard.length; n++)
         {   
             sendtostorage(addtocard[n]);
@@ -100,7 +100,7 @@ document.getElementById("number").addEventListener('change', function(e)
         function sendtostorage(p) {
            p.addEventListener('click', function()
            {
-            var valueSendToStorage =
+            let valueSendToStorage =
              {
                         namearticle : document.getElementById("namearticle").innerHTML,
                         numberofoptionarticle : [{
@@ -126,13 +126,13 @@ document.getElementById("number").addEventListener('change', function(e)
                     {
                         console.log( "L'article selectionné n'existe pas dans le panier? "+ (!obsJsonlocalstorage.find(articleExists => articleExists.namearticle == valueSendToStorage.namearticle )));
                         for (let i = 0; i < obsJsonlocalstorage.length; i++){
-                        var lengthBeforepush = i;}
+                        let lengthBeforepush = i;}
                         
                         obsJsonlocalstorage.push(valueSendToStorage);
                         localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
 
                         for (let j = 0; j < obsJsonlocalstorage.length; j++){
-                        var lengthafterpush = j;}
+                        let lengthafterpush = j;}
 
                         console.log("Il y avait déjà un article dans le panier et un article différent est ajouté? " +( lengthBeforepush < lengthafterpush) )
                         console.table(obsJsonlocalstorage);
@@ -196,7 +196,7 @@ document.getElementById("number").addEventListener('change', function(e)
                 }}
             }
                         obsJsonlocalstorage = JSON.parse(localStorage.getItem('session'));
-                        var Numberofarticle = 0;
+                        let Numberofarticle = 0;
                         for (let i = 0; i < obsJsonlocalstorage.length; i++){
                              Numberofarticle += parseInt(obsJsonlocalstorage[i].quantityarticle); 
                         }
@@ -213,7 +213,7 @@ fetch("http://localhost:3000/api/furniture/")
 .then(produitfooter =>{
     console.table(produitfooter);
     let produitFooter = '';
-    for (var i = 0; i < produitfooter.length; i++){
+    for (let i = 0; i < produitfooter.length; i++){
 if (urlParams.get('id') !== produitfooter[i]._id) {
             produitFooter +=`
                 <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn"> 

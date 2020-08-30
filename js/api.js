@@ -23,19 +23,18 @@ home.forEach(elements => {
 
  });
 
-var obsJsonlocalstorage = [];
+let obsJsonlocalstorage = [];
 obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
-if (!obsJsonlocalstorage == false )
+let Numberofarticle = 0;
+if (!obsJsonlocalstorage === false )
 {
-var Numberofarticle = 0;
 for (let i = 0; i < obsJsonlocalstorage.length; i++)
 {
- Numberofarticle += parseInt(obsJsonlocalstorage[i].quantityarticle); 
+ Numberofarticle += parseInt(obsJsonlocalstorage[i].quantityarticle);
 }
 console.log(Numberofarticle);
-document.getElementById("basketnumber").innerHTML = Numberofarticle;
 }
-
+document.getElementById("basketnumber").innerHTML = Numberofarticle;
 });
 
 

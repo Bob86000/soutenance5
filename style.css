@@ -39,6 +39,10 @@ p
 {
     font-size: 1.4rem;
 }
+.redalert2 p
+{
+    font-size: 1rem;
+}
 li
 {
     font-size: 2rem;
@@ -685,4 +689,18 @@ padding-bottom:1rem;
 .labelctn label
 {
     font-weight: bold;
+}
+.redalert2
+{
+
+display: flex;
+justify-content: center;
+}
+.redalert2 p
+{ 
+background-color: white;
+margin-top: 0.5rem;
+margin-bottom: 0rem;
+color:red;
+display: flex;
 }

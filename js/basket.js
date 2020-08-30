@@ -3,7 +3,9 @@ fetch("http://localhost:3000/api/furniture/")
 return responsed.json()
 } )
 .then(produit =>{
-    let obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
+    let obsJsonlocalstorage = [];
+    obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
+
     let addOptionArticle = '';
     let addArticle ='';
     for (let i = 0; i < obsJsonlocalstorage.length; i++) {
@@ -42,11 +44,9 @@ return responsed.json()
     document.getElementById("articlebasketpage-ctn2").innerHTML = addArticle;
 
 
-    obsJsonlocalstorage = [];
-    obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
     let numberOfArticle = 0;
 
-    if (!obsJsonlocalstorage == false )
+    if (!obsJsonlocalstorage === false )
     {
     
     for (let i = 0; i < obsJsonlocalstorage.length; i++)
@@ -54,9 +54,8 @@ return responsed.json()
         numberOfArticle += parseInt(obsJsonlocalstorage[i].quantityarticle); 
     }
     console.log(numberOfArticle);
-    document.getElementById("basketnumber").innerHTML = numberOfArticle;
     }
-        
+    document.getElementById("basketnumber").innerHTML = numberOfArticle;    
         
     let finalPrice = 0;
     for (let i = 0; i < obsJsonlocalstorage.length; i++) 
@@ -288,7 +287,7 @@ return responsed.json()
             })}
 
 
-            document.getElementById("finalconfirmation").addEventListener('change', function(e) 
+            document.getElementById("finalconfirmation").addEventListener('click', function(e) 
             {
                 contact =
                 {
@@ -298,68 +297,97 @@ return responsed.json()
                  city : document.getElementById("form__city").value,
                  email : document.getElementById("form__email").value
                 };
-                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(contact.firstname)) {
-                    let checkfirstname = true;
-                } else {
-                    e.preventDefault();
-                    alert("pas ok");
-                    e.target.value='';
-                    e.target.focus();
+                let checkfirstname = false;
+                let checkname = false;
+                let checkaddress = false;
+                let checkcity = false;
+                let checkemail = false;
+                let checkproducts = false;
+
+                { function redalert (x,y) 
+                    {
+                    document.getElementById(x).parentNode.lastElementChild.firstChild.innerHTML = " ! "+y+" n'est pas valide";
+                    }
                 }
-                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(contact.name)) {
-                    let checkname = true;
-                } else {
-                    e.preventDefault();
-                    alert("pas ok");
-                    e.target.value='';
-                    e.target.focus();
+
+                {  function greenalert (x)
+                    { 
+                    document.getElementById(x).parentNode.lastElementChild.firstChild.innerHTML = ""
+                    }
                 }
-                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(contact.address)) {
-                    let checkaddress = true;
+
+                if (/^[a-zA-Z-]{2,} ?[a-zA-Z-]* ?[a-zA-Z-]*$/.test(contact.firstname) && typeof contact.firstname === "string") {
+                    checkfirstname = true;
+                    greenalert ("form__firstname");
+                    console.log("le prenom est bon");
                 } else {
                     e.preventDefault();
-                    alert("pas ok");
-                    e.target.value='';
-                    e.target.focus();
+                    document.getElementById("form__firstname").value = "";
+                    redalert ("form__firstname","Le prénom");
                 }
-                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(contact.city)) {
-                    let checkcity = true;
+                if (/^[a-zA-Z-]{2,} ?[a-zA-Z-]* ?[a-zA-Z-]*$/.test(contact.name) && (typeof contact.name === "string")) {
+                    checkname = true;
+                    greenalert ("form__name");
+                    console.log("le nom est bon");
                 } else {
                     e.preventDefault();
                     alert("pas ok");
-                    e.target.value='';
-                    e.target.focus();
+                    document.getElementById("form__name").value = "";
+                    redalert ("form__name","Le nom");
+                }
+                if (/^[a-zA-Z0-9,._-]+ ?[a-zA-Z0-9,._-]* ?[a-zA-Z0-9,._-]*$/.test(contact.address) && (typeof contact.address === "string")) {
+                    checkaddress = true;
+                    greenalert ("form__address");
+                    console.log("l'adresse est bonne");
+                } else {
+                    e.preventDefault();
+                    alert("pas ok");
+                    document.getElementById("form__address").value = "";
+                    redalert ("form__address","L'adresse");
+                }
+                if (/^[a-zA-Z. _-]+$/.test(contact.city) && (typeof contact.city === "string")) {
+                    checkcity = true;
+                    console.log("la ville est bonne");
+                    greenalert ("form__city");
+                } else {
+                    e.preventDefault();
+                    alert("pas ok");
+                    document.getElementById("form__city").value= "";
+                    redalert ("form__city","La ville");
                 }
                 
-                if (/^([a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6})$/.test(contact.email)) {
-                    let checkemail = true;
-                    ne pas oublier la veirfication string des valeurs de propriété
+                if (/^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/.test(contact.email) && typeof contact.email === "string") {
+                    checkemail = true;
+                    console.log("l'email est ok");
+                    greenalert ("form__email");
                 } else {
                     e.preventDefault();
                     alert("pas ok");
-                    e.target.value='';
-                    e.target.focus();
+                    document.getElementById("form__email").value= "";
+                    redalert ("form__email","L'email");
                 }
-                if ( verifier que le panier contient minimum un produit) {
-                    let checkproduct = true;
+                if (obsJsonlocalstorage && obsJsonlocalstorage.length > 0) {
+                    checkproduct = true;
+                    console.log("le panier n'est pas vide");
                 } else {
                     e.preventDefault();
-                    alert("pas ok");
-                    e.target.value='';
-                    e.target.focus();
+                    alert("Le panier est vide");
                 }
 
                 if ( checkfirstname && checkname && checkaddress && checkcity && checkemail && checkproducts)
                 {
                     let products = [];
+                    e.preventDefault();
                 for (let i = 0; i < obsJsonlocalstorage.length; i++) 
                 {
                     let nameproducts = '';
-                    nameproducts += obsJsonlocalstorage[i].namearticle
+                    nameproducts += obsJsonlocalstorage[i].namearticle;
                     products.push(nameproducts);
                 }
-
+                 console.log(products);
                 }
+
+            });
 })
 
 fetch("http://localhost:3000/api/furniture/")
@@ -369,7 +397,7 @@ fetch("http://localhost:3000/api/furniture/")
 .then(produitfooter =>{
     console.table(produitfooter);
     let produitFooter = '';
-    for (var i = 0; i < produitfooter.length; i++){
+    for (let i = 0; i < produitfooter.length; i++){
         produitFooter +=`
                 <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn"> 
                     <h4> ${produitfooter[i].name}</h4> 
@@ -380,23 +408,5 @@ fetch("http://localhost:3000/api/furniture/")
     
     });
 
-    /*document.getElementById("name").addEventListener('input', function(e) {
-        var value = e.target.value;
-        function isValid(value) {
-            return /^[a-zA-Z]{0,16} [a-zA-Z]{0,16}$/.test(value);
-        }    
-    });*/
 
-    /**
- *
- * Expects request to contain:
- * contact: {
- *   firstName: string,
- *   lastName: string,
- *   address: string,
- *   city: string,
- *   email: string
- * }
- * products: [string] <-- array of product _id
- *
- */
+ 
