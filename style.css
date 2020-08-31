@@ -68,6 +68,10 @@ li .fas
     font-size: 4rem;
     color: white;
 }
+input
+{
+    width: 70%
+}
 .hightborder
 {
     border: solid black 20px;
@@ -782,10 +786,6 @@ span
     text-align: center;
     font-weight: bold;
 }
-input
-{
-    width: 70%;
-}
 @media all and (min-width: 992px) and (max-width: 1299px)
 {
     .main_wrapper
@@ -823,6 +823,16 @@ input
 {
     border: solid black 3px;
     width:50%
+}
+.basketnumber
+{
+    border:  black solid 4px;
+    top: -32px;
+    left: 15px;
+    font-size: 1.9rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    
 }
 
     h1
@@ -871,8 +881,7 @@ input
     }
     li .fas
     {
-        font-size: 3rem;
-        color: white;
+        font-size: 3.5rem;
     }
     
 }
@@ -921,6 +930,16 @@ input
     background-size: 24px;
     border-radius: 100px;
 }
+.basketnumber
+{
+    border:  black solid 3px;
+    top: -25px;
+    left: 13px;
+    font-size: 1.6rem;
+    width: 1.9rem;
+    height: 1.9rem;
+    
+}
 
     h1
     {
@@ -968,7 +987,7 @@ input
     }
     li .fas
     {
-        font-size: 2rem;
+        font-size: 3rem;
         color: white;
     }
     
@@ -1063,6 +1082,16 @@ input
     left:5%;
     width:35%;
 }
+.basketnumber
+{
+    border:  black solid 3px;
+    top: -22px;
+    left: 11px;
+    font-size: 1.3rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    
+}
 
     h1
     {
@@ -1110,8 +1139,7 @@ input
     }
     li .fas
     {
-        font-size: 1rem;
-        color: white;
+        font-size: 2.5rem;
     }
        
 }
@@ -1121,9 +1149,57 @@ input
 {
     width: 100%;
 }
+.basketnumber
+{
+    border:  black solid 3px;
+    top: -22px;
+    left: 11px;
+    font-size: 1.3rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    
+}
+.headerctn-logo
+{
+    margin-left:0rem;
+    margin-right:0rem;
+    width: 100%;
+    justify-content: center;
+}
+.headerctn-header
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title
+{
+    width:60%;
+    justify-content: center;
+}
+.logo
+{
+    text-align: end;
+}
+header nav
+{
+    width:100%;
+}
+header nav ul
+{
+    padding-left: 0rem;
+}
+.finalconfirmationctn
+{
+    flex-direction: column;
+    height:6rem;
+    width:100%;
+}
+
     h1
     {
-        font-size:1.6rem;
+        font-size:1.8rem;
     }
     h2
     {
@@ -1143,11 +1219,11 @@ input
     }
     .redalert2 p
     {
-        font-size: 0.5rem;
+        font-size: 0.9rem;
     }
     li
     {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
     label
     {
@@ -1167,12 +1243,15 @@ input
     }
     li .fas
     {
-        font-size: 1rem;
-        color: white;
+        font-size: 2.5rem;
     }
     .mainpage .sectionctn
     {
-        width:80%;
+        width:95%;
+    }
+    .mainpagectn
+    {
+        margin-top:2rem;
     }
     .productpage .article
     {
@@ -1203,7 +1282,12 @@ input
     .basketpage > article
     {
         width:90%;
-        margin-top: 3rem;;
+        margin-top: 3rem;
+    }
+    .basketpage .ordervalidation
+    {
+    margin-bottom: 3rem;
+    margin-top: 5rem;
     }
     .basketpage .add, .basketpage .remove, .basketpage .delete
 {
@@ -1223,14 +1307,64 @@ input
 }
 .finalpricectn
 {
-    right:5%;
-    width:43%;
+    top: -60px;
+    right: initial;
+    width:100%;
+    box-sizing: border-box;
 }
 .finalconfirmation
 {
-    left:5%;
-    width:35%;
+    top: 100px;
+    left: initial;
+    width:100%;
 }
+.listarticle, .quantityarticle, .pricearticle
+{
+    border: initial;
+    background-color: initial;
+    background-size: initial;
+    width: initial;
+    background: initial;
+    padding-bottom: 0rem;
+}
+.quantityarticle, .pricearticle
+{
+    border-left: solid black 2px;
+    border-radius: initial;
+    width:25%;
+}
+.listarticle
+{
+    width:50%;
+}
+.basketpage-ctnarticle3
+{
+    border: black solid 7px;
+    box-sizing: border-box;
+    background: url("img/texture-paper.png");
+    background-color: rgb(98, 153, 7);
+    background-size: 280px 280px;
+    border-radius: 20px;
+    align-items: center;
 
+}
+.basketpage-ctn2 .alloptionarticle
+{
+    width: 80%;
+    margin-left: 0rem;
+    margin-bottom: 1rem;
+}
+.articlebasketpage-ctn2
+{
+    align-items: center;
+}
+.orderarticle-ctn
+{
+    width: 90%;
+}
+.validationpage-ctn
+{
+    margin-left:10%;
+}
     
 }

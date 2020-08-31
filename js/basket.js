@@ -39,7 +39,7 @@ for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
                             </div>`;
         };
         addArticle += `
-        <div id="ctn${obsJsonlocalstorage[i].namearticle}">
+        <div id="ctn${obsJsonlocalstorage[i].namearticle}" class="basketpage-ctnarticle3">
             <div id="name${obsJsonlocalstorage[i].namearticle}" class="listarticle">
                 <p>${obsJsonlocalstorage[i].namearticle}</p>
                
@@ -322,56 +322,56 @@ for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
 
                 { function redalert (x,y) 
                     {
-                    document.getElementById(x).parentNode.lastElementChild.firstChild.innerHTML = " ! "+y+" n'est pas valide";
+                    document.getElementById(x).innerHTML = " ! "+y+" n'est pas valide";
                     }
                 }
 
                 {  function greenalert (x)
                     { 
-                    document.getElementById(x).parentNode.lastElementChild.firstChild.innerHTML = ""
+                    document.getElementById(x).innerHTML = ""
                     }
                 }
 
                 if (/^[a-zA-Z-]{2,} ?[a-zA-Z-]* ?[a-zA-Z-]*$/.test(contact.firstName) && typeof contact.firstName === "string") {
                     checkfirstname = true;
-                    greenalert ("form__firstname");
+                    greenalert ("alertfirstname");
                     console.log("le prenom est bon");
                 } else {
                     document.getElementById("form__firstname").value = "";
-                    redalert ("form__firstname","Le prénom");
+                    redalert ("alertfirstname","Le prénom");
                 }
                 if (/^[a-zA-Z-]{2,} ?[a-zA-Z-]* ?[a-zA-Z-]*$/.test(contact.lastName) && (typeof contact.lastName === "string")) {
                     checkname = true;
-                    greenalert ("form__name");
+                    greenalert ("alertname");
                     console.log("le nom est bon");
                 } else {
                     document.getElementById("form__name").value = "";
-                    redalert ("form__name","Le nom");
+                    redalert ("alertname","Le nom");
                 }
                 if (/^[a-zA-Z0-9,._-]+ ?[a-zA-Z0-9,._-]{2,} ?[a-zA-Z0-9,. _-]*$/.test(contact.address) && (typeof contact.address === "string")) {
                     checkaddress = true;
-                    greenalert ("form__address");
+                    greenalert ("alertaddress");
                     console.log("l'adresse est bonne");
                 } else {
                     document.getElementById("form__address").value = "";
-                    redalert ("form__address","L'adresse");
+                    redalert ("alertaddress","L'adresse");
                 }
                 if (/^[a-zA-Z. _-]{2,}$/.test(contact.city) && (typeof contact.city === "string")) {
                     checkcity = true;
                     console.log("la ville est bonne");
-                    greenalert ("form__city");
+                    greenalert ("alertcity");
                 } else {
                     document.getElementById("form__city").value= "";
-                    redalert ("form__city","La ville");
+                    redalert ("alertcity","La ville");
                 }
                 
                 if (/^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/.test(contact.email) && typeof contact.email === "string") {
                     checkemail = true;
                     console.log("l'email est ok");
-                    greenalert ("form__email");
+                    greenalert ("alertemail");
                 } else {
                     document.getElementById("form__email").value= "";
-                    redalert ("form__email","L'email");
+                    redalert ("alertemail","L'email");
                 }
                 if (obsJsonlocalstorage && obsJsonlocalstorage.length > 0) {
                     checkproducts = true;
