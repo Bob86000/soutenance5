@@ -146,13 +146,14 @@ fetch("http://localhost:3000/api/furniture/"+urlParams.get('id'))
                     console.table(obsJsonlocalstorage);
                 }
                 else {
+/*Si le localstorage n'est pas vide , c'est qu'il contient deja un article et dans ce cas je verifie que dans le tableau du localstorage il n'y pas article qui a le meme nom que celui que je m'apprete a envoyer au localstorage */ 
 
                     if (!obsJsonlocalstorage.find(articleExists => articleExists.namearticle == valueSendToStorage.namearticle ))
                     {
                         console.log( "L'article selectionné n'existe pas dans le panier? "+ (!obsJsonlocalstorage.find(articleExists => articleExists.namearticle == valueSendToStorage.namearticle )));
                         for (let i = 0; i < obsJsonlocalstorage.length; i++){
                         var lengthBeforepush = i;}
-                        
+/*Pour rajouter un article au local storage je push tout simplement dans le tableau storage un objet qui contient les valeurs de la page actuelle que j'envoie*/                         
                         obsJsonlocalstorage.push(valueSendToStorage);
                         localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
 
@@ -162,16 +163,19 @@ fetch("http://localhost:3000/api/furniture/"+urlParams.get('id'))
                         console.log("Il y avait déjà un article dans le panier et un article différent est ajouté? " +( lengthBeforepush < lengthafterpush) )
                         console.table(obsJsonlocalstorage);
                     }
+ /*Si il y a article que j'envoie qui a le meme nom que celui d'un des article du tableau storage dans ce cas je ne vais pas l'envoyer. je vais simplement mettre a jour la quantité de l'article qui existe deja dans le localstorage */ 
                     else {
+ /* Avant de mettre a jour la quantité il faut que je sache si l'article qui existe deja a la meme option de vernis que l'article que je souhaite envoyé*/                        
                         for (let k = 0; k < obsJsonlocalstorage.length; k++)
                         {
                             for (let m=0; m < obsJsonlocalstorage[k].numberofoptionarticle.length; m++ ) {
+/*J'ai utilisé deux boucles pour fouiller dans deux tableux , le premier celui des nom d'articles , le deuxieme celui des nom de vernis de chaque article.Si j'ai un nom identique & un nom de vernis identique dans ce cas la je modifie les quantités*/                                 
                     if (valueSendToStorage.namearticle === obsJsonlocalstorage[k].namearticle && valueSendToStorage.numberofoptionarticle[0].optionarticle == obsJsonlocalstorage[k].numberofoptionarticle[m].optionarticle)
                         {
                             console.log("L'article existe déjà dans le panier? " + (valueSendToStorage.namearticle === obsJsonlocalstorage[k].namearticle) + " et l'option de personnalisation existait également dans le panier? " + (valueSendToStorage.numberofoptionarticle[0].optionarticle == obsJsonlocalstorage[k].numberofoptionarticle[m].optionarticle));
                             console.log("Ici l'article et l'option de personnalisation existait deja on additionne les quantités");
                             
-
+/*Il y a deux quantité a modifier , celle du nombre des articles et celle du nombre des options d'articles (les vernis).Je créer une variable qui va stocker la quantité du nombre des articles*/ 
                         let modifyValueSendToStorage =
                     {
                         namearticle : obsJsonlocalstorage[k].namearticle,
@@ -179,25 +183,27 @@ fetch("http://localhost:3000/api/furniture/"+urlParams.get('id'))
                         pricearticle : parseInt(obsJsonlocalstorage[k].pricearticle) + parseInt(valueSendToStorage.pricearticle), 
                         quantityarticle : parseInt(obsJsonlocalstorage[k].quantityarticle) + parseInt(valueSendToStorage.quantityarticle)
                     };
-
+/*Je créer une autre variable qui va stocker la quantité du nombre des options d'articles*/ 
                         let modifynumberofoptionarticle = {
                             optionarticle : obsJsonlocalstorage[k].numberofoptionarticle[m].optionarticle,
                             quantityoptionarticle : parseInt(obsJsonlocalstorage[k].numberofoptionarticle[m].quantityoptionarticle) + parseInt(valueSendToStorage.numberofoptionarticle[0].quantityoptionarticle)
                         };
-
+/*Je ne vais pas modifié tout le localstorage juste l'index visé. Je rajoute la nouvelle valeur de quantité et de prix de l'article ,et ensuite dans un second temps je rajoute la nouvelle valeur de la quantité d'option d'article*/ 
                     obsJsonlocalstorage[k] = modifyValueSendToStorage;
                     obsJsonlocalstorage[k].numberofoptionarticle[m] = modifynumberofoptionarticle;
+/*J'ai maintenant un tableau qui contient les bonnes valeurs a jour je l'enregistre dans le localstorage*/                    
                     localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
                     console.table(obsJsonlocalstorage);
+/*Des que la condition a été reussi je n'ai pas besoin de reitéré la boucle, car je risque d'ajouter plusieurs produits a la fois voir meme de créer une boucle infini */                     
                     break;
                 }
 
-
+/*Si maintenant le nom d'article que j'envoie correspond a un nom d'article qui est deja dans le localstorage, je cherche si l'article si l'option n'existe pas.Et si c'est le cas je modifie la quantité de l'article et je rajoute une nouvelle option a l'article du localstorage*/
                     else if (valueSendToStorage.namearticle === obsJsonlocalstorage[k].namearticle && !obsJsonlocalstorage[k].numberofoptionarticle.find(optionarticleExists => optionarticleExists.optionarticle == valueSendToStorage.numberofoptionarticle[0].optionarticle))
                         {  
                         console.log("L'article existe déjà dans le panier? " + (valueSendToStorage.namearticle === obsJsonlocalstorage[k].namearticle) + " et l'option de personnalisation est différente? " + (!obsJsonlocalstorage[k].numberofoptionarticle.find(optionarticleExists => optionarticleExists.optionarticle == valueSendToStorage.numberofoptionarticle[0].optionarticle)));
                         console.log("Ici l'option de personnalisation n'existait pas on la rajoute dans le tableau de l'article");
-                        
+/*c'est la variable qui calcule l'addition du */                        
                         let modifyValueSendToStorage =
                     {
                         namearticle : obsJsonlocalstorage[k].namearticle,
