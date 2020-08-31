@@ -9,7 +9,7 @@ fetch("http://localhost:3000/api/furniture/"+urlParams.get('id'))
 .then(produit =>{
     console.log(produit.name);
             document.getElementById("article").innerHTML = `
-        <div class="productpagectn" id="productpagectn">
+        <div class="productpagectn lowborder" id="productpagectn">
             <h2 id="namearticle">${produit.name}</h2>
             <div class="articlectn-header1" >
                 <div class="articlectn-choice">
@@ -22,17 +22,17 @@ fetch("http://localhost:3000/api/furniture/"+urlParams.get('id'))
                     </button>
                 </div>
             </div>
-            <div class="articlectn-main1">
+            <div class="articlectn-main1 verylowborder">
                 <img src="${produit.imageUrl}" />  
             </div>
             <div class="articlectn-footer1">
                 <p>"${produit.description}"</p>
             </div>
         </div>
-        <div class="articlectn-buyctn">
+        <div class="articlectn-buyctn lowborder">
             <h3>${produit.name}</h3>
             <div class="articlectn-header2">
-            <p id="ajustvarnish" >Fournie avec le vernis ${produit.varnish[0]}.</p>
+            <p id="ajustvarnish" >Fournie avec le vernis <span>${produit.varnish[0]}</span>.</p>
             <p>Le délai de livraison pour cet article est de 14 jours environ.</p>
 
         </div>
@@ -216,7 +216,7 @@ fetch("http://localhost:3000/api/furniture/")
     for (let i = 0; i < produitfooter.length; i++){
 if (urlParams.get('id') !== produitfooter[i]._id) {
             produitFooter +=`
-                <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn"> 
+                <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn verylowborder asidefooter"> 
                     <h4> ${produitfooter[i].name}</h4> 
                     <img src="${produitfooter[i].imageUrl}" />
                 </a>`;}

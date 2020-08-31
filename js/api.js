@@ -6,8 +6,8 @@ console.log(home);
 let responseElement ='';
 home.forEach(elements => {
     responseElement += 
-    `<a class="sectionctn" href="produit.html?id=${elements._id}">
-        <div class="imgctn">
+    `<a class="sectionctn lowborder" href="produit.html?id=${elements._id}">
+        <div class="imgctn verylowborder">
             <img  src="${elements.imageUrl}" />
         </div> 
         <div class="textctn">

@@ -61,12 +61,27 @@ label
 }
 .fas
 {
-    font-size:8rem;
+    font-size:5rem;
 }
 li .fas
 {
     font-size: 4rem;
     color: white;
+}
+.hightborder
+{
+    border: solid black 20px;
+    border-radius: 30px;
+}
+.lowborder
+{
+    border: solid black 15px;
+    border-radius: 20px;
+}
+.verylowborder img
+{
+    border: solid black 8px;
+    border-radius: 30px;
 }
 .basketpage .add
 {   
@@ -132,8 +147,6 @@ header ,.headerctn-header
 }
 header
 {
-    border: solid black 20px;
-    border-radius: 30px;
     box-sizing: border-box;
     background: url("img/texture-paper.png");
     background-color: #5b3c28;
@@ -221,9 +234,6 @@ article
     display: flex;
     width:40%;
     flex-direction: column;
-    border: solid black 15px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 20px;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
@@ -269,8 +279,6 @@ h2, h3
 {
     display: flex;
     width: 80%;
-    border: solid black 8px;
-    border-radius: 30px;
     box-sizing: border-box;
 }
 .productpage .articlectn-main2
@@ -298,6 +306,10 @@ h2, h3
 .productpage .articlectn-footer2 
 {
     margin-top: 3rem;
+    margin-bottom:2rem;
+    display:flex;
+    justify-content: space-around;
+    width:80%;
 }
 .productpage-otherproduct, .basketpage-otherproduct
 {
@@ -315,6 +327,17 @@ h2, h3
     background-color: #5b3c28;
     background-size: 280px 280px;
 } 
+.productpage .articlectn-buyctn button
+{
+    border:solid black 2px;
+    border-radius:30px;
+    display:flex;
+}
+.productpage button p
+{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
 .productpage-otherproduct p, .basketpage-otherproduct p
 {
 font-weight: bold;
@@ -345,10 +368,11 @@ margin-top: 0.5rem;
     border-radius: 25%;
     margin-bottom: 1rem;
     box-sizing: border-box;
+    text-align: center;
 }
 .basketpage-otherproduct .asidectn
 {
-    width:17%;
+    width:20%;
 }
 .productpage-otherproduct-selection .asidectn h4
 {
@@ -379,9 +403,7 @@ margin-top: 0.5rem;
  display:flex;
  width: 40%;
  margin-top: 3rem;
- border: solid black 15px;
  background-color: rgb(255, 255, 255);
- border-radius: 20px;
  box-sizing: border-box;
  background-color: #5b3c28;
  background-size: 280px 280px;
@@ -391,7 +413,6 @@ margin-top: 0.5rem;
 {
  display:block;
  width: 40%;
- border: solid black 4px;
  margin-top: 3rem;
  box-sizing: border-box;
 
@@ -437,8 +458,6 @@ margin-top: 0.5rem;
 .mainpage .sectionctn img
 {
     width: 80%;
-    border: solid black 8px;
-    border-radius: 30px;
     margin: 1rem;
     box-sizing: border-box;
 }
@@ -461,8 +480,6 @@ margin-top: 0.5rem;
     align-items: center;
     text-align: center;
     flex-direction: column;
-    border: solid black 15px;
-    border-radius: 30px;
     box-sizing: border-box;
     background: url("img/texture-paper.png");
     background-color: #5b3c28;
@@ -513,11 +530,13 @@ margin-top: 0.5rem;
 {
     display:flex;
     width:50%;
+    justify-content: center;
 }
 .basketpage-ctn2 .quantityoptionarticle
 {
     display:flex;
     width:30%;
+    justify-content: center;
 }
 .basketpage-ctn2 .optionarticle
 {
@@ -626,14 +645,12 @@ width: 40%;
 position : absolute;
 left: 10%;
 top: -36px;
-border: black solid 15px;
 box-sizing: border-box;
 background: url("img/texture-paper.png");
 background-color: rgb(98, 153, 7);
 background-size: 280px 280px;
 justify-content: center;
 align-items: center;   
-border-radius: 30px;
 }
 .finalconfirmation a
 {
@@ -658,11 +675,9 @@ box-sizing: content-box;
 position: absolute;
 top: -43px;
 right: 10%;
-border: black solid 15px;
 background: url("img/texture-paper.png");
 background-color: rgb(98, 153, 7);
 background-size: 280px 280px;
-border-radius: 30px;
 padding-top: 1rem;
 padding-bottom:1rem;
 }
@@ -705,4 +720,406 @@ margin-top: 0.5rem;
 margin-bottom: 0rem;
 color:red;
 display: flex;
+}
+.validationpage .article 
+{
+border: black solid 15px;
+background: url("img/texture-paper.png");
+background-color: rgb(98, 153, 7);
+background-size: 280px 280px;
+border-radius: 30px;
+padding-top: 1rem;
+padding-bottom:1rem;
+box-sizing: border-box;
+}
+.validationpage-ctn 
+{
+display:flex;
+width: 100%;
+justify-content: center;
+flex-direction: column;
+margin-left: 20%;
+}
+.validationpage-ctn span
+{
+    font-weight: bold;
+}
+span
+{
+    font-weight: bold;
+}
+.orderarticle-ctn
+{
+    display:flex;
+    width: 40%;
+    flex-direction: column;
+}
+.orderarticle
+{
+    display:flex;
+    width: 100%;
+    border: solid black 10px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    background: url("img/texture-paper.png");
+    background-color: #5b3c28;
+    background-size: 280px 280px;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+.orderarticle img
+{
+    width:20%;
+    margin-bottom: 1rem;
+    border: solid black 5px;
+    border-radius: 30px;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+.orderarticle p
+{
+    width:40%;
+    text-align: center;
+    font-weight: bold;
+}
+input
+{
+    width: 70%;
+}
+@media all and (min-width: 992px) and (max-width: 1299px)
+{
+    .main_wrapper
+{
+    width: 95%;
+}
+.basketpage-ctn, .basketpage-ctn2
+{
+    margin-top:5rem;
+}
+.hightborder
+{
+    border: solid black 18px;
+    border-radius: 30px;
+}
+.lowborder
+{
+    border: solid black 12px;
+    border-radius: 20px;
+}
+.verylowborder img
+{
+    border: solid black 6px;
+    border-radius: 30px;
+}
+.mainpage .sectionctn
+{
+    width: 43%
+}
+.mainpagectn
+{
+    margin-top: 4rem;
+}
+.main_wrapper aside .asidefooter img
+{
+    border: solid black 3px;
+    width:50%
+}
+
+    h1
+    {
+        font-size:3rem;
+    }
+    h2
+    {
+        font-size: 2.1rem;
+    }
+    h3
+    {
+        font-size: 2.6rem;
+    }
+    h4
+    {
+        font-size: 1rem;
+    }
+    p
+    {
+        font-size: 1.2rem;
+    }
+    .redalert2 p
+    {
+        font-size: 0.9rem;
+    }
+    li
+    {
+        font-size: 1.6rem;
+    }
+    label
+    {
+        font-size: 1.1rem;
+    }
+    .productpagectn label
+    {
+        font-size: 0.9rem;
+    }
+    .productpage-otherproduct p
+    {
+        font-size: 1.6rem;
+    }
+    .fas
+    {
+        font-size:4.5rem;
+    }
+    li .fas
+    {
+        font-size: 3rem;
+        color: white;
+    }
+    
+}
+@media all and (min-width: 769px) and (max-width: 991px)
+{
+    .main_wrapper
+{
+    width: 100%;
+}
+.basketpage-ctn, .basketpage-ctn2
+{
+    margin-top:3rem;
+}
+.hightborder
+{
+    border: solid black 18px;
+    border-radius: 30px;
+}
+.lowborder
+{
+    border: solid black 12px;
+    border-radius: 20px;
+}
+.mainpage .sectionctn
+{
+    width: 45%
+}
+.mainpagectn
+{
+    margin-top: 3rem;
+}
+.verylowborder img
+{
+    border: solid black 4px;
+    border-radius: 30px;
+}
+.main_wrapper aside .asidefooter img
+{
+    border: solid black 2px;
+    width:65%
+}
+.basketpage .add, .basketpage .remove, .basketpage .delete
+{
+    width: 30px;
+    height: 30px;
+    background-size: 24px;
+    border-radius: 100px;
+}
+
+    h1
+    {
+        font-size:2rem;
+    }
+    h2
+    {
+        font-size: 1.6rem;
+    }
+    h3
+    {
+        font-size: 2rem;
+    }
+    h4
+    {
+        font-size: 0.8rem;
+    }
+    p
+    {
+        font-size: 1rem;
+    }
+    .redalert2 p
+    {
+        font-size: 0.7rem;
+    }
+    li
+    {
+        font-size: 1.1rem;
+    }
+    label
+    {
+        font-size: 0.9rem;
+    }
+    .productpagectn label
+    {
+        font-size: 0.7rem;
+    }
+    .productpage-otherproduct p
+    {
+        font-size: 1.1rem;
+    }
+    .fas
+    {
+        font-size:3.5rem;
+    }
+    li .fas
+    {
+        font-size: 2rem;
+        color: white;
+    }
+    
+    
+}
+@media all and (min-width: 501px) and (max-width: 768px)
+{
+    .main_wrapper
+{
+    width: 100%;
+}
+.basketpage-ctn, .basketpage-ctn2
+{
+    margin-top:2rem;
+}
+.basketpage .add, .basketpage .remove, .basketpage .delete
+{
+    width: 25px;
+    height: 25px;
+    background-size: 20px;
+    border-radius: 100px;
+}
+.basketpage-ctn
+{
+    width:30%;
+}
+.basketpage-ctn2
+{
+    width:68%;
+}
+.ordervalidation
+{
+    margin-top:4rem;
+}
+.hightborder
+{
+    border: solid black 15px;
+    border-radius: 30px;
+}
+.lowborder
+{
+    border: solid black 10px;
+    border-radius: 20px;
+}
+.mainpage .sectionctn
+{
+    width: 48%
+}
+.mainpagectn
+{
+    margin-top: 2rem;
+}
+.productpage .articlectn-footer2 
+{ 
+    width: 100%;
+}
+.verylowborder img
+{
+    border: solid black 4px;
+    border-radius: 30px;
+}
+.main_wrapper aside .asidefooter
+{
+    border: solid black 7px;
+}
+.main_wrapper aside .asidefooter img
+{
+    border: solid black 2px;
+    width:90%;
+}
+.productpage-otherproduct-selection .asidectn, .basketpage-otherproduct .asidectn
+{
+    width:23%;
+}
+.listarticle, .quantityarticle, .pricearticle
+{
+    border: black solid 5px;
+}
+.basketpage-ctn2 .alloptionarticle 
+{
+    border-left: solid black 4px;
+    border-right: solid black 4px;
+    border-bottom: solid black 4px;
+}
+.finalpricectn
+{
+    right:5%;
+    width:43%;
+}
+.finalconfirmation
+{
+    left:5%;
+    width:35%;
+}
+
+    h1
+    {
+        font-size:1.6rem;
+    }
+    h2
+    {
+        font-size: 1.1rem;
+    }
+    h3
+    {
+        font-size: 1.6rem;
+    }
+    h4
+    {
+        font-size: 0.6rem;
+    }
+    p
+    {
+        font-size: 0.8rem;
+    }
+    .redalert2 p
+    {
+        font-size: 0.5rem;
+    }
+    li
+    {
+        font-size: 0.8rem;
+    }
+    label
+    {
+        font-size: 0.7rem;
+    }
+    .productpagectn label
+    {
+        font-size: 0.5rem;
+    }
+    .productpage-otherproduct p
+    {
+        font-size: 0.8rem;
+    }
+    .fas
+    {
+        font-size:2rem;
+    }
+    li .fas
+    {
+        font-size: 1rem;
+        color: white;
+    }
+       
+}
+@media all and (max-width: 500px)
+{
+    .main_wrapper
+{
+    width: 100%;
+}
+    
 }

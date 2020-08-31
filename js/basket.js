@@ -81,10 +81,10 @@ for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
 
     document.getElementById("ordervalidation").innerHTML = `
     <div class="finalconfirmationctn">
-        <div class="finalconfirmation">
+        <div class="finalconfirmation lowborder">
             <a id="finalconfirmation" href="validation.html" ><p>Passez la commande</p></a> 
         </div> 
-        <div class="finalpricectn"> 
+        <div class="finalpricectn lowborder"> 
         <p>Montant total</p> 
         <p id="finalPrice" >${finalPrice/1000}£</p>
         </div>
@@ -337,7 +337,6 @@ for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
                     greenalert ("form__firstname");
                     console.log("le prenom est bon");
                 } else {
-                    e.preventDefault();
                     document.getElementById("form__firstname").value = "";
                     redalert ("form__firstname","Le prénom");
                 }
@@ -346,18 +345,14 @@ for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
                     greenalert ("form__name");
                     console.log("le nom est bon");
                 } else {
-                    e.preventDefault();
-                    alert("pas ok");
                     document.getElementById("form__name").value = "";
                     redalert ("form__name","Le nom");
                 }
-                if (/^[a-zA-Z0-9,._-]+ ?[a-zA-Z0-9,._-]{2,} ?[a-zA-Z0-9,._-]*$/.test(contact.address) && (typeof contact.address === "string")) {
+                if (/^[a-zA-Z0-9,._-]+ ?[a-zA-Z0-9,._-]{2,} ?[a-zA-Z0-9,. _-]*$/.test(contact.address) && (typeof contact.address === "string")) {
                     checkaddress = true;
                     greenalert ("form__address");
                     console.log("l'adresse est bonne");
                 } else {
-                    e.preventDefault();
-                    alert("pas ok");
                     document.getElementById("form__address").value = "";
                     redalert ("form__address","L'adresse");
                 }
@@ -366,8 +361,6 @@ for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
                     console.log("la ville est bonne");
                     greenalert ("form__city");
                 } else {
-                    e.preventDefault();
-                    alert("pas ok");
                     document.getElementById("form__city").value= "";
                     redalert ("form__city","La ville");
                 }
@@ -377,8 +370,6 @@ for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
                     console.log("l'email est ok");
                     greenalert ("form__email");
                 } else {
-                    e.preventDefault();
-                    alert("pas ok");
                     document.getElementById("form__email").value= "";
                     redalert ("form__email","L'email");
                 }
@@ -386,15 +377,17 @@ for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
                     checkproducts = true;
                     console.log("le panier n'est pas vide");
                 } else {
-                    e.preventDefault();
-                    alert("Le panier est vide");
+                    alert("Un problème est survenu.Votre panier est vide");
                 }
-
+                if (checkproducts && (!checkfirstname || !checkname || !checkaddress || !checkcity || !checkemail || !checkproducts)){
+                    alert("Un problème est survenu.Vérifiez vos informations")
+                }
                 if ( checkfirstname && checkname && checkaddress && checkcity && checkemail && checkproducts)
                 {
                     
                     let products = [];
                     e.preventDefault();
+                    console.log(typeof responseElement[0].itemid);
                 for (let i = 0; i < obsJsonlocalstorage.length; i++) 
                 {
                     for (let j = 0; j < responseElement.length; j++){
@@ -407,6 +400,7 @@ for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
                 }
                 }
                 console.log(products);
+                console.log(typeof products[0]);
                 fetch("http://localhost:3000/api/furniture/order", {
                     method: 'POST',
                     mode: "cors",
@@ -418,9 +412,12 @@ for (let j = 0; j < obsJsonlocalstorage[i].numberofoptionarticle.length; j++)  {
                 }).then(res => {
                     return res.json()})
                 .then(data => {
-                     console.log(data);
+                    console.log(data);
+                    localStorage.setItem("order", JSON.stringify(data));
+                    let obsJsonlocalstorage = [];
+                    localStorage.setItem('session', JSON.stringify(obsJsonlocalstorage));
+                    window.location = this.href;
                 })
-                .catch(error => console.log('ERROR'));
                 }})
 
 fetch("http://localhost:3000/api/furniture/")
@@ -432,7 +429,7 @@ fetch("http://localhost:3000/api/furniture/")
     let produitFooter = '';
     for (let i = 0; i < produitfooter.length; i++){
         produitFooter +=`
-                <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn"> 
+                <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn asidefooter verylowborder"> 
                     <h4> ${produitfooter[i].name}</h4> 
                     <img src="${produitfooter[i].imageUrl}" />
                 </a>`;
