@@ -8,7 +8,7 @@ fetch("http://localhost:3000/api/furniture/"+urlParams.get('id'))
 .then( responsed => responsed.json())
 .then(produit =>{
     console.log(produit.name);
-            document.getElementById("article").innerHTML = `
+    document.getElementById("article").innerHTML = `
         <div class="productpagectn lowborder" id="productpagectn">
             <h2 id="namearticle">${produit.name}</h2>
             <div class="articlectn-header1" >
@@ -17,8 +17,7 @@ fetch("http://localhost:3000/api/furniture/"+urlParams.get('id'))
                         <label for="vernis">
                         Choix du vernis
                         </label>
-                        <select name="DYNAMIK_NAME_CHOICE" id="vernis">
-                        </select>
+                        <select name="varnishbutton" id="vernis"></select>
                     </button>
                 </div>
             </div>
@@ -32,74 +31,100 @@ fetch("http://localhost:3000/api/furniture/"+urlParams.get('id'))
         <div class="articlectn-buyctn lowborder">
             <h3>${produit.name}</h3>
             <div class="articlectn-header2">
-            <p id="ajustvarnish" >Fournie avec le vernis <span>${produit.varnish[0]}</span>.</p>
-            <p>Le délai de livraison pour cet article est de 14 jours environ.</p>
-
-        </div>
-        <div class="articlectn-main2">
-           <p >Prix du produit : 
-                <span id="price">${produit.price / 1000}</span>£</p>
-           <label for="quantity">
-               Selection de la quantité
-           </label> 
-           <input type="number" id="number" name="quantity" value="1" min="1" max="15">
-        </div>
-        <div class="articlectn-footer2">
-           <a href="panier.html"><button class="addtocard" ><p>Acheter cet article</p></button></a>
-           <button class="addtocard" ><p>Ajouter au panier</p></button>
-        </div>
-
+                <p id="ajustvarnish">Fournie avec le vernis <span>${produit.varnish[0]}</span>.</p>
+                <p>Le délai de livraison pour cet article est de 14 jours environ.</p>
+            </div>
+            <div class="articlectn-main2">
+                <p>Prix du produit :<span id="price">${produit.price / 1000}</span>£</p>
+                <label for="quantity">
+                    Selection de la quantité
+                </label> 
+                <input type="number" id="number" name="quantity" value="1" min="1" max="15">
+            </div>
+            <div class="articlectn-footer2">
+                <a href="panier.html">
+                    <button class="addtocard" ><p>Acheter cet article</p></button>
+                </a>
+                <button class="addtocard" ><p>Ajouter au panier</p></button>
+            </div>
         </div>`;
 
  
 /*ne pas utiliser inner.html += dans une boucle mettre une variable pour concatener et recupéré le string via element.html*/
-let varnishProduit ='';
-for (let j = 0; j < produit.varnish.length; j++) {
-    varnishProduit += `
-<option id="${produit.varnish[j]}" class="varnishclass" value="${produit.varnish[j]}">${produit.varnish[j]}</option>`;
-}
-document.getElementById("vernis").innerHTML = varnishProduit;
-
-let  varnishchoice = document.getElementById("vernis");
-varnishchoice.addEventListener('change', function(e)
-{
-    document.getElementById("ajustvarnish").innerHTML= `Fournie avec le vernis ${e.currentTarget.value}`
-});
-
-let obsJsonlocalstorage = [];
-obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
-let Numberofarticle = 0;
-if (!obsJsonlocalstorage === false )
-{
-
-for (let i = 0; i < obsJsonlocalstorage.length; i++)
-{
- Numberofarticle += parseInt(obsJsonlocalstorage[i].quantityarticle); 
-}
-console.log(Numberofarticle);
-}
-document.getElementById("basketnumber").innerHTML = Numberofarticle;
-let calculate = 
-{
-    fullprice: function (y) 
-                { return ((y)*produit.price)/1000}
-};
     
-document.getElementById("number").addEventListener('change', function(e)
-{
-     document.getElementById("price").innerHTML= calculate.fullprice(e.currentTarget.value);
-})
-        
+/*boucle pour parcourir le tableau des vernis et afficher en <option> les reference des vernis*/
+    let varnishProduit ='';
+    for (let j = 0; j < produit.varnish.length; j++) 
+        {
+        varnishProduit += `
+        <option id="${produit.varnish[j]}" class="varnishclass" value="${produit.varnish[j]}">
+            ${produit.varnish[j]}
+        </option>`;
+        }
+/* Une fois que j'ai recupéré tout les otpions des vernis je les insere dans un element html dédié au vernis*/
+    document.getElementById("vernis").innerHTML = varnishProduit;
 
-     let addtocard = document.getElementsByClassName('addtocard'); 
+/* je rajoute un evenement qui fait que lorsqu'on click sur un <option> qui contient le vernis,automatiquement le vernis selectionné s'affiché sur une autre portion de page*/     
+    let  varnishchoice = document.getElementById("vernis");
+    varnishchoice.addEventListener('change', function(e)
+        {
+        document.getElementById("ajustvarnish").innerHTML= `Fournie avec le vernis <span>${e.currentTarget.value}</span>.`
+        });
+
+
+
+
+    
+/*ici j'initialise toutes les fonctions qui n'ont pas besoin d'etre initialisé de manière synchrone dans une partie précise du code*/  
+
+/*Obsjonlocalstorage va me servir a stocker un tableau qui contiendra les informations que j'enverrai dans le localstorage nommé session*/
+    let obsJsonlocalstorage = [];
+
+/*Numberofarticle va me servir a calculé en temps réel le nombre d'article dans le panier qui est affiché dans le header de la page html*/
+    let Numberofarticle = 0;
+
+/*calculate me sert a calculé le prix en temps réel des produits selectionné , elle retourne une valeur et prend en argument la quantité selectionné du produit que l'on va recupéré via un evenement*/    
+    let calculate = 
+    {
+    fullprice: (y) => ((y)*produit.price)/1000
+    };
+
+/*addtocard va me servir a placer 1 evenement sur chacun des boutons achat (acheter ou mettre dans le panier)*/    
+    let addtocard = document.getElementsByClassName('addtocard'); 
+
+
+/* Ici je verifie que le le localstorage ne renvoie pas une valeur undefined ou null, si le tableau est vide, lenght renverra 0 et la condition pour la boucle ne se fera pas*/
+
+    obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
+    if (!obsJsonlocalstorage === false )
+        {
+/*Lorsque la page se charge , une boucle va additionné toute les quantités de chaque article contenu dans le localstorage*/           
+        for (let i = 0; i < obsJsonlocalstorage.length; i++)
+            {
+            Numberofarticle += parseInt(obsJsonlocalstorage[i].quantityarticle); 
+            }
+        console.log(Numberofarticle);
+        }
+/*Numberofarticle contient maintenant la quantité total des produits qui ont été stocker dans le localstorage, j'affiche la valeur dans le header de la page*/
+    document.getElementById("basketnumber").innerHTML = Numberofarticle;
+
+/*number correspond au prix de tout les produits. Elle est affiché grace à la valeur quantité recupéré au moment du click, puis via la fonction calculate je calcule le prix final en rentrant la quantité en argument de la fonction */    
+    document.getElementById("number").addEventListener('change', function(e)
+        {
+        document.getElementById("price").innerHTML= calculate.fullprice(e.currentTarget.value);
+        })
+
+/* Cette boucle va executé 2 fois la fonction et cette fonction renvoie dans son argument un element HTML, qui sera différent a chaque itération. Et ensuite elle va placer un evenement sur chaque element */        
+
     for(let n=0; n<addtocard.length; n++)
         {   
             sendtostorage(addtocard[n]);
         }
 
-        function sendtostorage(p) {
+    function sendtostorage(p) {
            p.addEventListener('click', function()
            {
+/*valueSendToStorage va stocker les valeur enregistré sur la page actuelle au moment du click, c'est la seul façon d'ajouter des valeurs dans le localstorage*/               
             let valueSendToStorage =
              {
                         namearticle : document.getElementById("namearticle").innerHTML,
@@ -111,7 +136,7 @@ document.getElementById("number").addEventListener('change', function(e)
                         quantityarticle : document.getElementById("number").value
                     }
                 ;
-
+/*Si le localstorage est vide, la valeur qu'il renvoie est false . Si il est bien vide j'envoie' simplement les valeurs de la page actuelle sans aucune autre opérations*/ 
                 if (obsJsonlocalstorage == false) {
                     console.log("Il n'y avait aucun article dans la panier? " + (obsJsonlocalstorage == false) );
                     obsJsonlocalstorage.push(valueSendToStorage);
