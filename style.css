@@ -1121,5 +1121,116 @@ input
 {
     width: 100%;
 }
+    h1
+    {
+        font-size:1.6rem;
+    }
+    h2
+    {
+        font-size: 1.1rem;
+    }
+    h3
+    {
+        font-size: 1.6rem;
+    }
+    h4
+    {
+        font-size: 0.6rem;
+    }
+    p
+    {
+        font-size: 0.8rem;
+    }
+    .redalert2 p
+    {
+        font-size: 0.5rem;
+    }
+    li
+    {
+        font-size: 0.8rem;
+    }
+    label
+    {
+        font-size: 0.7rem;
+    }
+    .productpagectn label
+    {
+        font-size: 0.5rem;
+    }
+    .productpage-otherproduct p
+    {
+        font-size: 0.8rem;
+    }
+    .fas
+    {
+        font-size:2rem;
+    }
+    li .fas
+    {
+        font-size: 1rem;
+        color: white;
+    }
+    .mainpage .sectionctn
+    {
+        width:80%;
+    }
+    .productpage .article
+    {
+        flex-wrap: wrap;
+        margin-top: 2rem;
+    }
+    .productpage .productpagectn
+    {
+        width:90%;
+    }
+    .productpage .articlectn-buyctn
+    {
+        width:90%;
+        margin-top: 1rem;
+    }
+    .productpage-otherproduct-selection, .basketpage-otherproduct-selection
+    {
+        flex-wrap: wrap;
+    }
+    .productpage-otherproduct-selection .asidectn, .basketpage-otherproduct .asidectn
+    {
+        width: 40%;
+    }
+    .productpage-otherproduct p, .basketpage-otherproduct p
+    {
+        margin-bottom: 1rem;
+    }
+    .basketpage > article
+    {
+        width:90%;
+        margin-top: 3rem;;
+    }
+    .basketpage .add, .basketpage .remove, .basketpage .delete
+{
+    width: 25px;
+    height: 25px;
+    background-size: 20px;
+    border-radius: 100px;
+}
+.validationpage .article 
+{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.productpage-otherproduct, .basketpage-otherproduct
+{
+    margin-top: 3rem;
+}
+.finalpricectn
+{
+    right:5%;
+    width:43%;
+}
+.finalconfirmation
+{
+    left:5%;
+    width:35%;
+}
+
     
 }
