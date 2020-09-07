@@ -44,26 +44,7 @@ fetch("http://localhost:3000/api/furniture/"+urlParams.get('id'))
     })
   }
 })
-
-fetch("http://localhost:3000/api/furniture/")
-.then( responsedfooter => {
- return responsedfooter.json()
-} )
-.then(produitfooter =>{
-    console.table(produitfooter);
-    let produitFooter = '';
-    for (let i = 0; i < produitfooter.length; i++){
-if (urlParams.get('id') !== produitfooter[i]._id) {
-            produitFooter +=`
-                <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn verylowborder asidefooter"> 
-                    <h4> ${produitfooter[i].name}</h4> 
-                    <img src="${produitfooter[i].imageUrl}" />
-                </a>`;}
-        }
-        document.getElementById("otherproduct-selection").innerHTML = produitFooter;
-        
-        ;});
-
+displayOptionalArticle(); 
         
 function getId() {
    queryString = window.location.search;
@@ -232,3 +213,24 @@ function modifyDataIfSameArticleNewOption(k) {
     console.table(obsJsonlocalstorage[k].numberofoptionarticle);
     console.table(obsJsonlocalstorage);
 }
+
+function displayOptionalArticle() {
+  fetch("http://localhost:3000/api/furniture/")
+  .then( responsedfooter => {
+   return responsedfooter.json()
+  } )
+  .then(produitfooter =>{
+      console.table(produitfooter);
+      let produitFooter = '';
+      for (let i = 0; i < produitfooter.length; i++){
+  if (urlParams.get('id') !== produitfooter[i]._id) {
+              produitFooter +=`
+                  <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn verylowborder asidefooter"> 
+                      <h4> ${produitfooter[i].name}</h4> 
+                      <img src="${produitfooter[i].imageUrl}" />
+                  </a>`;}
+          }
+          document.getElementById("otherproduct-selection").innerHTML = produitFooter;
+          
+          ;});
+  }

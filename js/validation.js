@@ -1,17 +1,8 @@
-let obsJsonlocalstorage = [];
-obsJsonlocalstorage = JSON.parse(localStorage.getItem('session')) || [];
-let Numberofarticle = 0;
-if (!obsJsonlocalstorage === false )
-{
-for (let i = 0; i < obsJsonlocalstorage.length; i++)
-{
- Numberofarticle += parseInt(obsJsonlocalstorage[i].quantityarticle);
-}
-console.log(Numberofarticle);
-}
-document.getElementById("basketnumber").innerHTML = Numberofarticle;
+displayBasket();
+displayOrder();
+displayOptionalArticle();
 
-
+function displayOrder() {
 let order = [];
 order = JSON.parse(localStorage.getItem('order')) || [];
 console.log(order);
@@ -19,7 +10,6 @@ console.log(order);
 console.log(order.contact);
 
 console.log(order.contact.city);
-
 document.getElementById("article").innerHTML = `
 <div class = "validationpage-ctn">
     <p>La commande a bien été validée.</br>
@@ -50,8 +40,11 @@ console.log(addOrderArticle);
 
 
  document.getElementById("orderarticle-ctn").innerHTML = addOrderArticle;
+}
 
 
+
+function displayOptionalArticle() {
 
 fetch("http://localhost:3000/api/furniture/")
 .then( responsedfooter => {
@@ -70,3 +63,11 @@ fetch("http://localhost:3000/api/furniture/")
         document.getElementById("otherproduct-selection").innerHTML = produitFooter;
     
     });
+
+}
+
+
+
+
+
+

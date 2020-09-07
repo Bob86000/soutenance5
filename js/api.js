@@ -16,13 +16,6 @@ fetch("http://localhost:3000/api/furniture")
 });
 
 
-
-
-
-
-
-
-
 function displayElement(x) {
     responseElement +=
    `<a class="sectionctn lowborder" href="produit.html?id=${x._id}">

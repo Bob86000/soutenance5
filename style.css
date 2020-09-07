@@ -834,6 +834,11 @@ span
     height: 2.2rem;
     
 }
+.orderarticle-ctn
+{
+    
+    width: 70%;
+}
 
     h1
     {
@@ -939,6 +944,11 @@ span
     width: 1.9rem;
     height: 1.9rem;
     
+}
+.orderarticle-ctn
+{
+    
+    width: 70%;
 }
 
     h1
@@ -1091,6 +1101,11 @@ span
     width: 1.6rem;
     height: 1.6rem;
     
+}
+.orderarticle-ctn
+{
+    
+    width: 90%;
 }
 
     h1
