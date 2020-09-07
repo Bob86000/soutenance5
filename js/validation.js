@@ -3,14 +3,9 @@ displayOrder();
 displayOptionalArticle();
 
 function displayOrder() {
-let order = [];
-order = JSON.parse(localStorage.getItem('order')) || [];
-console.log(order);
-
-console.log(order.contact);
-
-console.log(order.contact.city);
-document.getElementById("article").innerHTML = `
+  let order = [];
+  order = JSON.parse(localStorage.getItem("order")) || [];
+  document.getElementById("article").innerHTML = `
 <div class = "validationpage-ctn">
     <p>La commande a bien été validée.</br>
     Votre numero de commande est le <span>${order.orderId}</span>.</br>
@@ -24,50 +19,34 @@ document.getElementById("article").innerHTML = `
     <p> Toute ces informations ont été également envoyé sur votre mail <span>${order.contact.email}</span></br>
     Merci pour votre commande.</br>
     A bientôt.</p>
-</div>`
-;
+</div>`;
 
-let addOrderArticle = "";
-for (let i = 0; i < order.products.length; i++)  {
-    addOrderArticle += 
-    `<div class="orderarticle">
+  let addOrderArticle = "";
+  for (let i = 0; i < order.products.length; i++) {
+    addOrderArticle += `<div class="orderarticle">
      <img src="${order.products[i].imageUrl}"/>  
      <p>${order.products[i].name}</p>
        </div>`;
-    }
-console.log(order.products[0].name);
-console.log(addOrderArticle);
-
-
- document.getElementById("orderarticle-ctn").innerHTML = addOrderArticle;
+  }
+  document.getElementById("orderarticle-ctn").innerHTML = addOrderArticle;
 }
 
-
-
 function displayOptionalArticle() {
-
-fetch("http://localhost:3000/api/furniture/")
-.then( responsedfooter => {
- return responsedfooter.json()
-} )
-.then(produitfooter =>{
-    console.table(produitfooter);
-    let produitFooter = '';
-    for (let i = 0; i < produitfooter.length; i++){
-        produitFooter +=`
+  fetch("http://localhost:3000/api/furniture/")
+    .then((responsedfooter) => {
+      return responsedfooter.json();
+    })
+    .then((produitfooter) => {
+      let produitFooter = "";
+      for (let i = 0; i < produitfooter.length; i++) {
+        produitFooter += `
                 <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn verylowborder asidefooter"> 
                     <h4> ${produitfooter[i].name}</h4> 
                     <img src="${produitfooter[i].imageUrl}" />
                 </a>`;
-        };
-        document.getElementById("otherproduct-selection").innerHTML = produitFooter;
-    
+      }
+      document.getElementById(
+        "otherproduct-selection"
+      ).innerHTML = produitFooter;
     });
-
 }
-
-
-
-
-
-
