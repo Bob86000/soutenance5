@@ -1,10 +1,9 @@
 function displayBasket() {
-  Numberofarticle = 0;
-  obsJsonlocalstorage = [];
-  obsJsonlocalstorage = JSON.parse(localStorage.getItem("session")) || [];
-  if (!obsJsonlocalstorage === false) {
-    for (let i = 0; i < obsJsonlocalstorage.length; i++) {
-      Numberofarticle += parseInt(obsJsonlocalstorage[i].quantityarticle);
+  let Numberofarticle = 0;
+  cart = JSON.parse(localStorage.getItem("session")) || [];
+  if (!cart === false) {
+    for (let i = 0; i < cart.length; i++) {
+      Numberofarticle += parseInt(cart[i].quantity);
     }
   }
   document.getElementById("basketnumber").innerHTML = Numberofarticle;

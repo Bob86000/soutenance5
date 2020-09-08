@@ -1,9 +1,12 @@
-displayBasket();
-displayOrder();
-displayOptionalArticle();
+let order = [];
+let addOrderArticle = "";
+let produitFooter = "";
+
+displayBasket();//Fonction recurrente défini sur la page function.js, elle affiche le nombre d'article du panier en temps réel
+displayOrder();//affiche un modele de la page en fonction des données stockées dans le localstorage
+displayOptionalArticle();//En bas de page affiche des articles supplémentaires
 
 function displayOrder() {
-  let order = [];
   order = JSON.parse(localStorage.getItem("order")) || [];
   document.getElementById("article").innerHTML = `
 <div class = "validationpage-ctn">
@@ -21,7 +24,6 @@ function displayOrder() {
     A bientôt.</p>
 </div>`;
 
-  let addOrderArticle = "";
   for (let i = 0; i < order.products.length; i++) {
     addOrderArticle += `<div class="orderarticle">
      <img src="${order.products[i].imageUrl}"/>  
@@ -33,11 +35,8 @@ function displayOrder() {
 
 function displayOptionalArticle() {
   fetch("http://localhost:3000/api/furniture/")
-    .then((responsedfooter) => {
-      return responsedfooter.json();
-    })
+    .then(responsefooter => responsefooter.json())
     .then((produitfooter) => {
-      let produitFooter = "";
       for (let i = 0; i < produitfooter.length; i++) {
         produitFooter += `
                 <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn verylowborder asidefooter"> 

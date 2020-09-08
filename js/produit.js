@@ -232,9 +232,7 @@ function modifyDataIfSameArticleNewOption(k) {
 
 function displayOptionalArticle() {
   fetch("http://localhost:3000/api/furniture/")
-    .then((responsedfooter) => {
-      return responsedfooter.json();
-    })
+    .then((responsefooter) => responsefooter.json())
     .then((produitfooter) => {
       let produitFooter = "";
       for (let i = 0; i < produitfooter.length; i++) {
