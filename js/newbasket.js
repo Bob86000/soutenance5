@@ -86,6 +86,33 @@ function displayFinalPrice() {
         </div>
     </div>`;
 }
+function displayOptionalArticle() {
+  fetch("http://localhost:3000/api/furniture/")
+    .then((responsefooter) => responsefooter.json())
+    .then((produitfooter) => {
+      let produitFooter = "";
+      for (let i = 0; i < produitfooter.length; i++) {
+        produitFooter += `
+                <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn asidefooter verylowborder"> 
+                    <h4> ${produitfooter[i].name}</h4> 
+                    <img src="${produitfooter[i].imageUrl}" />
+                </a>`;
+      }
+      document.getElementById(
+        "otherproduct-selection"
+      ).innerHTML = produitFooter;
+    });
+}
+function updateFinalPriceDisplay() {
+  let numberOfArticle = 0;
+  let finalPrice = 0;
+  for (let j = 0; j < cart.length; j++) {
+    numberOfArticle += parseInt(cart[j].quantity);
+    finalPrice += cart[j].price;
+  }
+  document.getElementById("basketnumber").innerHTML = numberOfArticle;
+  document.getElementById("finalPrice").innerHTML = `${finalPrice / 1000}£`;
+}
 function buttonAddOneMoreArticle() {
   addOneToStorage = document.getElementsByClassName("add");
   for (let i = 0; i < addOneToStorage.length; i++) {
@@ -110,14 +137,7 @@ function buttonAddOneMoreArticle() {
           }
         }
       }
-      let numberOfArticle = 0;
-      let finalPrice = 0;
-      for (let j = 0; j < cart.length; j++) {
-        numberOfArticle += parseInt(cart[j].quantity);
-        finalPrice += cart[j].price;
-      }
-      document.getElementById("basketnumber").innerHTML = numberOfArticle;
-      document.getElementById("finalPrice").innerHTML = `${finalPrice / 1000}£`;
+      updateFinalPriceDisplay();
     });
   }
 }
@@ -168,14 +188,7 @@ function buttonRemoveOneArticle() {
           }
         }
       }
-      let numberOfArticle = 0;
-      let finalPrice = 0;
-      for (let j = 0; j < cart.length; j++) {
-        numberOfArticle += parseInt(cart[j].quantity);
-        finalPrice += cart[j].price;
-      }
-      document.getElementById("basketnumber").innerHTML = numberOfArticle;
-      document.getElementById("finalPrice").innerHTML = `${finalPrice / 1000}£`;
+      updateFinalPriceDisplay();
     });
   }
 }
@@ -184,7 +197,6 @@ function buttonDeleteAllArticle() {
   for (let i = 0; i < deleteAlltostorage.length; i++) {
     deleteAllItemToStorage(deleteAlltostorage[i]);
   }
-
   function deleteAllItemToStorage(DOMElement) {
     DOMElement.addEventListener("click", function (e) {
       let getIdFromDOMElement = e.currentTarget.id;
@@ -219,18 +231,10 @@ function buttonDeleteAllArticle() {
           }
         }
       }
-      let numberOfArticle = 0;
-      let finalPrice = 0;
-      for (let j = 0; j < cart.length; j++) {
-        numberOfArticle += parseInt(cart[j].quantity);
-        finalPrice += cart[j].price;
-      }
-      document.getElementById("basketnumber").innerHTML = numberOfArticle;
-      document.getElementById("finalPrice").innerHTML = `${finalPrice / 1000}£`;
+      updateFinalPriceDisplay();
     });
   }
 }
-
 function verifyFormAndSetContactObject(e) {
  contact = {
     firstName: document.getElementById("form__firstname").value,
@@ -325,7 +329,6 @@ function setProductsObject(e) {
     products.push(finalproductsId);
   }
 }
-
 function postResponseAndAddToLocalStorage(getHref) {
   fetch("http://localhost:3000/api/furniture/order", {
     method: "POST",
@@ -343,23 +346,5 @@ function postResponseAndAddToLocalStorage(getHref) {
       let cart = [];
       localStorage.setItem("session", JSON.stringify(cart));
       window.location = getHref.href;
-    });
-}
-
-function displayOptionalArticle() {
-  fetch("http://localhost:3000/api/furniture/")
-    .then((responsefooter) => responsefooter.json())
-    .then((produitfooter) => {
-      let produitFooter = "";
-      for (let i = 0; i < produitfooter.length; i++) {
-        produitFooter += `
-                <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn asidefooter verylowborder"> 
-                    <h4> ${produitfooter[i].name}</h4> 
-                    <img src="${produitfooter[i].imageUrl}" />
-                </a>`;
-      }
-      document.getElementById(
-        "otherproduct-selection"
-      ).innerHTML = produitFooter;
     });
 }
