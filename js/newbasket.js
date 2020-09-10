@@ -125,14 +125,18 @@ function buttonAddOneMoreArticle() {
       for (let j = 0; j < cart.length; j++) {
         for (let k = 0; k < cart[j].option.length; k++) {
           if (getIdFromDOMElement == cart[j].name + cart[j].option[k].name) {
-            let newprice = cart[j].price / cart[j].quantity;
-            cart[j].price += newprice;
-            cart[j].option[k].quantity++;
-            cart[j].quantity++;
+            let unityPrice = cart[j].price / cart[j].quantity;
+            let modifyPrice = (Foundindex) => cart[Foundindex].price += unityPrice;
+            modifyPrice(j);
+            let modifyOptionQuantity = cart[j].option[k].quantity++;
+            let modifyQuantity = cart[j].quantity++;
+            let newPrice = cart[j].price;
+            let newOptionQuantity = cart[j].option[k].quantity;
+            let newQuantity = cart[j].quantity;
             localStorage.setItem("session", JSON.stringify(cart));
-            document.getElementById("quantity" + cart[j].name + cart[j].option[k].name).innerHTML = "<p>" + cart[j].option[k].quantity + "</p>";
-            document.getElementById("quantity" + cart[j].name).innerHTML ="<p>" + cart[j].quantity + "</p>";
-            document.getElementById("price" + cart[j].name).innerHTML ="<p>" + cart[j].price / 1000 + "£<p>";
+            document.getElementById("quantity" + cart[j].name + cart[j].option[k].name).innerHTML = "<p>" + newOptionQuantity + "</p>";
+            document.getElementById("quantity" + cart[j].name).innerHTML ="<p>" + newQuantity + "</p>";
+            document.getElementById("price" + cart[j].name).innerHTML ="<p>" + newPrice / 1000 + "£<p>";
             break;
           }
         }
@@ -153,36 +157,40 @@ function buttonRemoveOneArticle() {
       for (let j = 0; j < cart.length; j++) {
         for (let k = 0; k < cart[j].option.length; k++) {
           if (getIdFromDOMElement == cart[j].name + cart[j].option[k].name && cart[j].option[k].quantity > 0) {
-            let newprice = cart[j].price / cart[j].quantity;
-            cart[j].price -= newprice;
-            cart[j].option[k].quantity--;
-            cart[j].quantity--;
+            let unityPrice = cart[j].price / cart[j].quantity;
+            let modifyPrice = (foundIndex) => cart[foundIndex].price -= unityPrice;
+            modifyPrice(j);
+            let modifyOptionQuantity = cart[j].option[k].quantity--;
+            let modifyQuantity = cart[j].quantity--;
+            let newPrice = cart[j].price;
+            let newOptionQuantity = cart[j].option[k].quantity;
+            let newQuantity = cart[j].quantity;
             localStorage.setItem("session", JSON.stringify(cart));
-            if (cart[j].option[k].quantity < 1) {
-              let elementRemove = document.getElementById("optionarticle" + cart[j].name + cart[j].option[k].name);
-              let parentOfElementRemove = document.getElementById("alloptionarticle" + cart[j].name);
-              document.getElementById("quantity" + cart[j].name).innerHTML ="<p>" + cart[j].quantity + "</p>";
-              document.getElementById("price" + cart[j].name).innerHTML ="<p>" + cart[j].price / 1000 + "£</p>";
-              parentOfElementRemove.removeChild(elementRemove);
+            if (newOptionQuantity < 1) {
+              let optionDivElementToRemove = document.getElementById("optionarticle" + cart[j].name + cart[j].option[k].name);
+              let parentNodeOfElementToRemove = document.getElementById("alloptionarticle" + cart[j].name);
+              parentNodeOfElementToRemove.removeChild(optionDivElementToRemove);
+              document.getElementById("quantity" + cart[j].name).innerHTML ="<p>" + newQuantity + "</p>";
+              document.getElementById("price" + cart[j].name).innerHTML ="<p>" + newPrice / 1000 + "£</p>";
               let indextoDeleteOption = cart[j].option.map((e) => e.name).indexOf(cart[j].option[k].name);
               cart[j].option.splice(indextoDeleteOption, 1);
               localStorage.setItem("session", JSON.stringify(cart));
               if (cart[j].option.length == 0) {
-                let articleElementRemove = document.getElementById("ctn" + cart[j].name);
-                let articleElementRemove2 = document.getElementById("alloptionarticle" + cart[j].name);
-                let articleparentOfElementRemove = document.getElementById("articlebasketpage-ctn2");
-                articleparentOfElementRemove.removeChild(articleElementRemove);
-                articleparentOfElementRemove.removeChild(articleElementRemove2);
+                let articleDivElementToRemove = document.getElementById("ctn" + cart[j].name);
+                let articleDivElementToRemove2 = document.getElementById("alloptionarticle" + cart[j].name);
+                let parentNodeOfElementsToRemove = document.getElementById("articlebasketpage-ctn2");
+                parentNodeOfElementsToRemove.removeChild(articleDivElementToRemove);
+                parentNodeOfElementsToRemove.removeChild(articleDivElementToRemove2);
                 let indextoDeleteArticle = cart.map((e) => e.name).indexOf(cart[j].name);
                 cart.splice(indextoDeleteArticle, 1);
                 localStorage.setItem("session", JSON.stringify(cart));
               }
               break;
-            } else if (cart[j].option[k].quantity > 0) {
+            } else if (newOptionQuantity > 0) {
               document.getElementById("quantity" + cart[j].name + cart[j].option[k].name).innerHTML =
-               "<p>" + cart[j].option[k].quantity + "</p>";
-              document.getElementById("quantity" + cart[j].name).innerHTML = "<p>" + cart[j].quantity + "</p>";
-              document.getElementById("price" + cart[j].name).innerHTML = "<p>" + cart[j].price / 1000 + "£</p>";
+               "<p>" + newOptionQuantity + "</p>";
+              document.getElementById("quantity" + cart[j].name).innerHTML = "<p>" + newQuantity + "</p>";
+              document.getElementById("price" + cart[j].name).innerHTML = "<p>" + newPrice / 1000 + "£</p>";
               break;
             }
           }
@@ -204,25 +212,31 @@ function buttonDeleteAllArticle() {
       for (let j = 0; j < cart.length; j++) {
         for (let k = 0; k < cart[j].option.length; k++) {
           if (getIdFromDOMElement == cart[j].name + cart[j].option[k].name) {
-            let elementRemove = document.getElementById("optionarticle" + cart[j].name + cart[j].option[k].name);
-            let parentOfElementRemove = document.getElementById("alloptionarticle" + cart[j].name);
-            parentOfElementRemove.removeChild(elementRemove);
-            let newprice = cart[j].price / cart[j].quantity;
-            newprice = newprice * cart[j].option[k].quantity;
-            cart[j].price -= newprice;
-            cart[j].quantity -= cart[j].option[k].quantity;
-            cart[j].option[k].quantity = 0;
-            document.getElementById("quantity" + cart[j].name).innerHTML = "<p>" + cart[j].quantity + "</p>";
-            document.getElementById("price" + cart[j].name).innerHTML = "<p>" + cart[j].price / 1000 + "£</p>";
+            let optionDivElementToRemove = document.getElementById("optionarticle" + cart[j].name + cart[j].option[k].name);
+            let parentNodeOfElementToRemove = document.getElementById("alloptionarticle" + cart[j].name);
+            parentNodeOfElementToRemove.removeChild(optionDivElementToRemove);
+            let unityPrice = cart[j].price / cart[j].quantity;
+            let removePrice = unityPrice * cart[j].option[k].quantity;
+            let modifyPrice = (foundIndex) => cart[foundIndex].price -= removePrice;
+            modifyPrice(j);
+            let modifyQuantity = (foundIndex,foundIndex2) => cart[foundIndex].quantity -= cart[foundIndex].option[foundIndex2].quantity;
+            modifyQuantity(j,k);
+            let modifyOptionQuantity = (foundIndex,foundIndex2) => cart[foundIndex].option[foundIndex2].quantity = 0;
+            modifyOptionQuantity(j,k);
+            let newPrice = cart[j].price;
+            let newOptionQuantity = cart[j].option[k].quantity;
+            let newQuantity = cart[j].quantity;
+            document.getElementById("quantity" + cart[j].name).innerHTML = "<p>" + newQuantity + "</p>";
+            document.getElementById("price" + cart[j].name).innerHTML = "<p>" + newPrice / 1000 + "£</p>";
             let indextoDeleteOption = cart[j].option.map((e) => e.name).indexOf(cart[j].option[k].name);
             cart[j].option.splice(indextoDeleteOption, 1);
             localStorage.setItem("session", JSON.stringify(cart));
             if (cart[j].option.length == 0) {
-              let articleElementRemove = document.getElementById("ctn" + cart[j].name);
-              let articleElementRemove2 = document.getElementById("alloptionarticle" + cart[j].name);
-              let articleparentOfElementRemove = document.getElementById("articlebasketpage-ctn2");
-              articleparentOfElementRemove.removeChild(articleElementRemove);
-              articleparentOfElementRemove.removeChild(articleElementRemove2);
+              let articleDivElementToRemove = document.getElementById("ctn" + cart[j].name);
+              let articleDivElementToRemove2 = document.getElementById("alloptionarticle" + cart[j].name);
+              let parentNodeOfElementsToRemove = document.getElementById("articlebasketpage-ctn2");
+              parentNodeOfElementsToRemove.removeChild(articleDivElementToRemove);
+              parentNodeOfElementsToRemove.removeChild(articleDivElementToRemove2);
               let indextoDeleteArticle = cart.map((e) => e.name).indexOf(cart[j].name);
               cart.splice(indextoDeleteArticle, 1);
               localStorage.setItem("session", JSON.stringify(cart));
