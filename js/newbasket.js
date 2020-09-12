@@ -122,9 +122,9 @@ function buttonAddOneMoreArticle() {
     DOMElement.addEventListener("click", function (e) {
       let getIdFromDOMElement = e.currentTarget.id;
       getIdFromDOMElement = getIdFromDOMElement.slice(3);
-      for (let j = 0; j < cart.length; j++) {
-        for (let k = 0; k < cart[j].option.length; k++) {
-          if (getIdFromDOMElement == cart[j].name + cart[j].option[k].name) {
+      for (let j = 0; j < cart.length; j++) { //array of localstorage articles
+        for (let k = 0; k < cart[j].option.length; k++) { // array of article options
+          if (getIdFromDOMElement == cart[j].name + cart[j].option[k].name) { // if DOMId has same name & same option 
             let unityPrice = cart[j].price / cart[j].quantity;
             let modifyPrice = (Foundindex) => cart[Foundindex].price += unityPrice;
             modifyPrice(j);
@@ -154,9 +154,9 @@ function buttonRemoveOneArticle() {
     DOMElement.addEventListener("click", function (e) {
       let getIdFromDOMElement = e.currentTarget.id;
       getIdFromDOMElement = getIdFromDOMElement.slice(6);
-      for (let j = 0; j < cart.length; j++) {
-        for (let k = 0; k < cart[j].option.length; k++) {
-          if (getIdFromDOMElement == cart[j].name + cart[j].option[k].name && cart[j].option[k].quantity > 0) {
+      for (let j = 0; j < cart.length; j++) { //array of localstorage articles
+        for (let k = 0; k < cart[j].option.length; k++) { // array of article options
+          if (getIdFromDOMElement == cart[j].name + cart[j].option[k].name && cart[j].option[k].quantity > 0) { // if DOMId has same name and same option
             let unityPrice = cart[j].price / cart[j].quantity;
             let modifyPrice = (foundIndex) => cart[foundIndex].price -= unityPrice;
             modifyPrice(j);
@@ -166,7 +166,8 @@ function buttonRemoveOneArticle() {
             let newOptionQuantity = cart[j].option[k].quantity;
             let newQuantity = cart[j].quantity;
             localStorage.setItem("session", JSON.stringify(cart));
-            if (newOptionQuantity < 1) {
+            if (newOptionQuantity < 1) { 
+              //I remove DOM Elements of article option, udapte display and delete one array index of localStorage
               let optionDivElementToRemove = document.getElementById("optionarticle" + cart[j].name + cart[j].option[k].name);
               let parentNodeOfElementToRemove = document.getElementById("alloptionarticle" + cart[j].name);
               parentNodeOfElementToRemove.removeChild(optionDivElementToRemove);
@@ -175,7 +176,8 @@ function buttonRemoveOneArticle() {
               let indextoDeleteOption = cart[j].option.map((e) => e.name).indexOf(cart[j].option[k].name);
               cart[j].option.splice(indextoDeleteOption, 1);
               localStorage.setItem("session", JSON.stringify(cart));
-              if (cart[j].option.length == 0) {
+              if (cart[j].option.length == 0) { 
+                // I remove DOM element of article, delete one array index of localStorage and update display
                 let articleDivElementToRemove = document.getElementById("ctn" + cart[j].name);
                 let articleDivElementToRemove2 = document.getElementById("alloptionarticle" + cart[j].name);
                 let parentNodeOfElementsToRemove = document.getElementById("articlebasketpage-ctn2");
@@ -186,7 +188,7 @@ function buttonRemoveOneArticle() {
                 localStorage.setItem("session", JSON.stringify(cart));
               }
               break;
-            } else if (newOptionQuantity > 0) {
+            } else if (newOptionQuantity > 0) { 
               document.getElementById("quantity" + cart[j].name + cart[j].option[k].name).innerHTML =
                "<p>" + newOptionQuantity + "</p>";
               document.getElementById("quantity" + cart[j].name).innerHTML = "<p>" + newQuantity + "</p>";
@@ -209,9 +211,9 @@ function buttonDeleteAllArticle() {
     DOMElement.addEventListener("click", function (e) {
       let getIdFromDOMElement = e.currentTarget.id;
       getIdFromDOMElement = getIdFromDOMElement.slice(6);
-      for (let j = 0; j < cart.length; j++) {
-        for (let k = 0; k < cart[j].option.length; k++) {
-          if (getIdFromDOMElement == cart[j].name + cart[j].option[k].name) {
+      for (let j = 0; j < cart.length; j++) { //array of localstorage articles
+        for (let k = 0; k < cart[j].option.length; k++) { // array of article options
+          if (getIdFromDOMElement == cart[j].name + cart[j].option[k].name) { // if DOMId has same name and same option
             let optionDivElementToRemove = document.getElementById("optionarticle" + cart[j].name + cart[j].option[k].name);
             let parentNodeOfElementToRemove = document.getElementById("alloptionarticle" + cart[j].name);
             parentNodeOfElementToRemove.removeChild(optionDivElementToRemove);
@@ -232,6 +234,7 @@ function buttonDeleteAllArticle() {
             cart[j].option.splice(indextoDeleteOption, 1);
             localStorage.setItem("session", JSON.stringify(cart));
             if (cart[j].option.length == 0) {
+               // I remove DOM element of article, delete one array index of localStorage
               let articleDivElementToRemove = document.getElementById("ctn" + cart[j].name);
               let articleDivElementToRemove2 = document.getElementById("alloptionarticle" + cart[j].name);
               let parentNodeOfElementsToRemove = document.getElementById("articlebasketpage-ctn2");
@@ -250,6 +253,8 @@ function buttonDeleteAllArticle() {
   }
 }
 function verifyFormAndSetContactObject(e) {
+
+ //Form fields 
  contact = {
     firstName: document.getElementById("form__firstname").value,
     lastName: document.getElementById("form__name").value,
@@ -258,6 +263,8 @@ function verifyFormAndSetContactObject(e) {
     email: document.getElementById("form__email").value,
   };
   e.preventDefault();
+
+  //Verify Form fields
   if (
     /^[a-zA-Z-]{2,} ?[a-zA-Z-]* ?[a-zA-Z-]*$/.test(contact.firstName) &&
     typeof contact.firstName === "string"
@@ -327,10 +334,10 @@ function verifyFormAndSetContactObject(e) {
   ) {
     alert("Un problème est survenu.Vérifiez vos informations");
   }
-  function redalert(DOMElement, strings) {
+  function redalert(DOMElement, strings) { //display a red alert below form fields if they are not correct
       document.getElementById(DOMElement).innerHTML = " ! " + strings + " n'est pas valide";
     }
-  function greenalert(DOMElement) {
+  function greenalert(DOMElement) { //clear the red alert if form fields are correct
       document.getElementById(DOMElement).innerHTML = "";
     }
 

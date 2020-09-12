@@ -129,7 +129,10 @@ function getId() {
     let urlParams = new URLSearchParams(queryString);
     id = urlParams.get("id");
 }
-function selectedDataToSend(produit) {
+function selectedDataToSend(produit) { 
+
+  //Data before send them inside Localstorage
+
   sentData = {
     id : produit._id,
     name: produit.name,
@@ -142,9 +145,11 @@ function selectedDataToSend(produit) {
     price: parseInt(document.getElementById("price").innerHTML * 1000),
     quantity: parseInt(document.getElementById("number").value),
   };
+
+  //Then I modify Localstorage
+
   let cartProduct = cart.find((element) => element.name === sentData.name);
-  let cartProduct2 = "";
-  cartProduct2 = cartProduct;
+  let copyOfCartProduct = cartProduct;
   if (cartProduct === undefined) {
     cart.push(sentData);
   } else {
@@ -156,7 +161,7 @@ function selectedDataToSend(produit) {
     if (cartProduct !== undefined) {
       cartProduct.quantity += sentData.option[0].quantity;
     } else {
-      cartProduct2.option.push(sentData.option[0]);
+      copyOfCartProduct.option.push(sentData.option[0]);
     }
   }
   localStorage.setItem("session", JSON.stringify(cart));
