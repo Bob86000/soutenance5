@@ -1,9 +1,10 @@
 let cart = [];
 cart = JSON.parse(localStorage.getItem("session")) || [];
 let id = "";
-let varnishProduit = "";
+let displayDOMOption = "";
 let sentData = {};
-let produitFooter = "";
+let displayDOMBeforeFooter = "";
+let displayDOMArticle= "";
 
 getId();//Obtenir l'id du parametre URL de la page
 displayBasket();//Fonction recurrente défini sur la page function.js, elle affiche le nombre d'article du panier en temps réel
@@ -30,7 +31,8 @@ fetch("http://localhost:3000/api/furniture/" + id)
 displayOptionalArticle();//En bas de page affiche des articles supplémentaires
 
 function displayMainPage(produit) {
-  document.getElementById("article").innerHTML = 
+  displayDOMArticle = document.getElementById("article");
+  displayDOMArticle.innerHTML = 
           `<div class="productpagectn lowborder" id="productpagectn">
               <h2 id="namearticle">${produit.name}</h2>
               <div class="articlectn-header1">
@@ -88,15 +90,15 @@ function displayMainPage(produit) {
 }
 function displayVarnish(produit) {
   for (let j = 0; j < produit.varnish.length; j++) {
-    varnishProduit += `<option id="${produit.varnish[j]}" class="varnishclass" value="${produit.varnish[j]}">
+    displayDOMOption += `<option id="${produit.varnish[j]}" class="varnishclass" value="${produit.varnish[j]}">
                 ${produit.varnish[j]}
             </option>`;
   }
-  document.getElementById("vernis").innerHTML = varnishProduit;
+  document.getElementById("vernis").innerHTML = displayDOMOption;
 }
 function displayVarnishSelected() {
-  let varnishchoice = document.getElementById("vernis");
-  varnishchoice.addEventListener("change", function (e) {
+  let displayDOMParagraph = document.getElementById("vernis");
+  displayDOMParagraph.addEventListener("change", function (e) {
     document.getElementById("ajustvarnish").innerHTML = `Fournie avec le vernis <span>${e.currentTarget.value}</span>.`;
   });
 }
@@ -114,14 +116,14 @@ function displayOptionalArticle() {
       .then((produitfooter) => {
         for (let i = 0; i < produitfooter.length; i++) {
           if (id !== produitfooter[i]._id) {
-            produitFooter += `
+            displayDOMBeforeFooter += `
                       <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn verylowborder asidefooter"> 
                           <h4> ${produitfooter[i].name}</h4> 
                           <img src="${produitfooter[i].imageUrl}" />
                       </a>`;
           }
         }
-        document.getElementById("otherproduct-selection").innerHTML = produitFooter;
+        document.getElementById("otherproduct-selection").innerHTML = displayDOMBeforeFooter;
       });
 }
 function getId() {

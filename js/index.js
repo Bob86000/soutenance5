@@ -1,11 +1,11 @@
-let responseElement = "";
+let displayDOMSection = "";
 let cart = [];
 
 displayBasket(); //Fonction recurrente défini sur la page function.js, elle affiche le nombre d'article du panier en temps réel
 fetch("http://localhost:3000/api/furniture")
   .then((res) => res.json())
-  .then((home) => {
-    home.forEach((element) => {
+  .then((APIarray) => {
+    APIarray.forEach((element) => {
       displayElement(element);// Affiche les elements du tableau renvoyé par la reponse serveur
     });
   })
@@ -13,7 +13,7 @@ fetch("http://localhost:3000/api/furniture")
     displayErrorPage();// Affiche une image d'erreur si le serveur ne repond pas
   });
 function displayElement(element) {
-  responseElement += `<a class="sectionctn lowborder" href="produit.html?id=${element._id}">
+  displayDOMSection += `<a class="sectionctn lowborder" href="produit.html?id=${element._id}">
        <div class="imgctn verylowborder">
            <img  src="${element.imageUrl}" />
        </div> 
@@ -22,5 +22,5 @@ function displayElement(element) {
            <p>${element.description}</p>
        </div>
    </a>`;
-  document.getElementById("sectionid").innerHTML = responseElement;
+  document.getElementById("sectionid").innerHTML = displayDOMSection;
 }

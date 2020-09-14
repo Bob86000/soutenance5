@@ -1,7 +1,7 @@
 let cart = [];
 cart = JSON.parse(localStorage.getItem("session")) || [];
-let addOptionArticle = "";
-let addArticle = "";
+let displayDOMArticleOption = "";
+let displayDOMArticle = "";
 let contact= {};
 let checkfirstname = false;
 let checkname = false;
@@ -37,7 +37,7 @@ displayOptionalArticle();//En bas de page affiche des articles supplémentaires
 function displayBasketPage() {
   for (let i = 0; i < cart.length; i++) {
     for (let j = 0; j < cart[i].option.length; j++) {
-      addOptionArticle += `<div id="optionarticle${cart[i].name}${cart[i].option[j].name}" class="optionarticle">
+      displayDOMArticleOption += `<div id="optionarticle${cart[i].name}${cart[i].option[j].name}" class="optionarticle">
             <div id="name${cart[i].name}${cart[i].option[j].name}" class="listarticleoption">
                 <p>${cart[i].option[j].name}</p>
             </div>
@@ -52,7 +52,7 @@ function displayBasketPage() {
             </button>
         </div>`;
     }
-    addArticle += `<div id="ctn${cart[i].name}" class="basketpage-ctnarticle3">
+    displayDOMArticle += `<div id="ctn${cart[i].name}" class="basketpage-ctnarticle3">
             <div id="name${cart[i].name}" class="listarticle">
                 <p>${cart[i].name}</p>
             </div>
@@ -64,11 +64,11 @@ function displayBasketPage() {
             </div>
         </div>
         <div id="alloptionarticle${cart[i].name}" class="alloptionarticle">
-            ${addOptionArticle}
+            ${displayDOMArticleOption}
         </div>`;
-    addOptionArticle = "";
+    displayDOMArticleOption = "";
   }
-  document.getElementById("articlebasketpage-ctn2").innerHTML = addArticle;
+  document.getElementById("articlebasketpage-ctn2").innerHTML = displayDOMArticle;
 }
 function displayFinalPrice() {
   let finalPrice = 0;
@@ -90,9 +90,9 @@ function displayOptionalArticle() {
   fetch("http://localhost:3000/api/furniture/")
     .then((responsefooter) => responsefooter.json())
     .then((produitfooter) => {
-      let produitFooter = "";
+      let displayDOMBeforeFooter = "";
       for (let i = 0; i < produitfooter.length; i++) {
-        produitFooter += `
+        displayDOMBeforeFooter += `
                 <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn asidefooter verylowborder"> 
                     <h4> ${produitfooter[i].name}</h4> 
                     <img src="${produitfooter[i].imageUrl}" />
@@ -100,7 +100,7 @@ function displayOptionalArticle() {
       }
       document.getElementById(
         "otherproduct-selection"
-      ).innerHTML = produitFooter;
+      ).innerHTML = displayDOMBeforeFooter;
     });
 }
 function updateFinalPriceDisplay() {
