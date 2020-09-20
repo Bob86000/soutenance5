@@ -95,7 +95,7 @@ function displayOptionalArticle() {
         displayDOMBeforeFooter += `
                 <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn asidefooter verylowborder"> 
                     <h4> ${produitfooter[i].name}</h4> 
-                    <img src="${produitfooter[i].imageUrl}" />
+                    <img alt="${produitfooter[i].name}" src="${produitfooter[i].imageUrl}" />
                 </a>`;
       }
       document.getElementById(

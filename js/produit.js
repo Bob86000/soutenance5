@@ -47,7 +47,7 @@ function displayMainPage(produit) {
                   </div>
               </div>
               <div class="articlectn-main1 verylowborder">
-                  <img src="${produit.imageUrl}" />  
+                  <img alt="${produit.name}" src="${produit.imageUrl}" />  
               </div>
               <div class="articlectn-footer1">
                   <p>"${produit.description}"</p>
@@ -119,7 +119,7 @@ function displayOptionalArticle() {
             displayDOMBeforeFooter += `
                       <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn verylowborder asidefooter"> 
                           <h4> ${produitfooter[i].name}</h4> 
-                          <img src="${produitfooter[i].imageUrl}" />
+                          <img alt="${produitfooter[i].name}" src="${produitfooter[i].imageUrl}" />
                       </a>`;
           }
         }

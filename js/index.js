@@ -15,7 +15,7 @@ fetch("http://localhost:3000/api/furniture")
 function displayElement(element) {
   displayDOMSection += `<a class="sectionctn lowborder" href="produit.html?id=${element._id}">
        <div class="imgctn verylowborder">
-           <img  title="${element.name}" src="${element.imageUrl}" />
+           <img  alt="${element.name}" src="${element.imageUrl}" />
        </div> 
        <div class="textctn">
            <h2>${element.name}</h2>

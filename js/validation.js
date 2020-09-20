@@ -26,7 +26,7 @@ function displayOrder() {
 
   for (let i = 0; i < order.products.length; i++) {
     addOrderArticle += `<div class="orderarticle">
-     <img src="${order.products[i].imageUrl}"/>  
+     <img alt="${order.products[i].name}" src="${order.products[i].imageUrl}"/>  
      <p>${order.products[i].name}</p>
        </div>`;
   }
@@ -41,7 +41,7 @@ function displayOptionalArticle() {
         produitFooter += `
                 <a href="produit.html?id=${produitfooter[i]._id}" class="asidectn verylowborder asidefooter"> 
                     <h4> ${produitfooter[i].name}</h4> 
-                    <img src="${produitfooter[i].imageUrl}" />
+                    <img alt="${produitfooter[i].name}" src="${produitfooter[i].imageUrl}" />
                 </a>`;
       }
       document.getElementById(
